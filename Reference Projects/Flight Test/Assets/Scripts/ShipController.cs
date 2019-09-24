@@ -31,12 +31,22 @@ public class ShipController : MonoBehaviour
         //myRigidBody.velocity = combinedForce;
 
         // Get Rotation Inputs Since Update
+        Vector2 screenCenter = new Vector2(Screen.width/2, Screen.height/2);
+        Vector2 mousePosition = Input.mousePosition;
         float rotateRoll = Input.GetAxis("ControlRoll");
-        float rotatePitch = Input.GetAxis("Mouse Y") * 2;
-        float rotateYaw = Input.GetAxis("Mouse X") * 2;
+        Vector2 screenRotation = new Vector2(
+        	(screenCenter[0] - mousePosition[0]) / Screen.width,
+        	(screenCenter[1] - mousePosition[1]) / Screen.height
+        );
+
 
         // Apply Rotation
-        transform.Rotate(-rotatePitch, rotateYaw, -rotateRoll, Space.Self);
+        transform.Rotate(
+        	screenRotation[1] * 5,
+        	-screenRotation[0] * 5,
+        	-rotateRoll,
+        	Space.Self
+        );
     }
 
 
