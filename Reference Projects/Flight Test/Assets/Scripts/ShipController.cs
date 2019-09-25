@@ -42,21 +42,10 @@ public class ShipController : MonoBehaviour
         float rotateRoll = Input.GetAxis("ControlRoll");
 
         // Calculate Pitch & Yaw
-        float deadZoneRadiusInPixels = (Screen.height * DEADZONE_SIZE) / 2;
-        float mousePercentX = (Screen.width/2 - (Input.mousePosition[0] + 20)) / Screen.height;
-        float mousePercentY = (Screen.height/2 - (Input.mousePosition[1] - 20)) / Screen.height;
-
-        // Account for Dead Zone
-        if (mousePercentX < DEADZONE_SIZE/2 && mousePercentX > -DEADZONE_SIZE/2) {
-        	mousePercentX = 0;
-        } else {
-        	mousePercentX = mousePercentX + (-1 * mousePercentX * (DEADZONE_SIZE/2));
-        }
-        if (mousePercentY < DEADZONE_SIZE/2 && mousePercentY > -DEADZONE_SIZE/2) {
-        	mousePercentY = 0;
-        } else {
-        	mousePercentY = mousePercentY + (-1 * mousePercentY * (DEADZONE_SIZE/2));
-        }
+        float mousePercentXRaw = (Screen.width/2 - (Input.mousePosition[0] + 20)) / (Screen.height * .75f);
+        float mousePercentYRaw = (Screen.height/2 - (Input.mousePosition[1] - 20)) / (Screen.height * .75f);
+        float mousePercentX = Mathf.Sign(mousePercentXRaw) * Mathf.Pow(mousePercentXRaw, 2);
+        float mousePercentY = Mathf.Sign(mousePercentYRaw) * Mathf.Pow(mousePercentYRaw, 2);
 
         // Apply Transformations
         float shipPitch = mousePercentY * 5;
