@@ -15,6 +15,9 @@ public class ShipController : MonoBehaviour
 
     void FixedUpdate() {
 
+
+    	/*--- Translation ---*/
+
         // Get Movement Inputs Since Update
         float moveForwardBack = Input.GetAxis("ControlForwardBack");
         float moveUpDown = Input.GetAxis("ControlUpDown");
@@ -29,6 +32,9 @@ public class ShipController : MonoBehaviour
         // Apply Force to Rigidbody Component
         myRigidBody.AddForce(combinedForce);
         //myRigidBody.velocity = combinedForce;
+
+
+        /*--- Rotation ---*/
 
         // Calculate Roll
         float rotateRoll = Input.GetAxis("ControlRoll");

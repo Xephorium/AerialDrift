@@ -115,7 +115,7 @@ MonoBehaviour:
   m_MinSize: {x: 713, y: 494}
   m_MaxSize: {x: 18008, y: 14044}
   vertical: 0
-  controlID: 796
+  controlID: 11812
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 444}
   m_MaxSize: {x: 4002, y: 8044}
   vertical: 1
-  controlID: 705
+  controlID: 11813
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -217,7 +217,7 @@ MonoBehaviour:
   m_MinSize: {x: 234, y: 494}
   m_MaxSize: {x: 10004, y: 14044}
   vertical: 1
-  controlID: 797
+  controlID: 11899
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -414,9 +414,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -6.685096, y: 0.99469423, z: -2.9795053}
+    m_Target: {x: 24.598814, y: -8.983758, z: 26.772497}
     speed: 2
-    m_Value: {x: -6.685096, y: 0.99469423, z: -2.9795053}
+    m_Value: {x: 24.598814, y: -8.983758, z: 26.772497}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -445,13 +445,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: -0.014261305, y: 0.8489669, z: -0.022922555, w: -0.52777904}
+    m_Target: {x: -0.08966185, y: -0.3515477, z: 0.033933137, w: -0.93139946}
     speed: 2
-    m_Value: {x: -0.014295499, y: 0.84816396, z: -0.02290086, w: -0.52904546}
+    m_Value: {x: -0.088252336, y: -0.3515488, z: 0.03340082, w: -0.9314019}
   m_Size:
-    m_Target: 13.815892
+    m_Target: 76.54097
     speed: 2
-    m_Value: 13.815892
+    m_Value: 76.54097
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -508,7 +508,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 76f8ffffb4f8ffff50f9ffff6efbffff
+      m_ExpandedIDs: 7807ffff8620ffff0054ffff5664ffff148dffff92f2ffff6efbffffca2f0000ce2f00000a300000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -571,11 +571,11 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/Materials
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Materials
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Xephorium\Home\Projects\Game Dev\Unity Projects\UMSL
     Final\Reference Projects\Flight Test
@@ -583,8 +583,8 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: d42c0000
-    m_LastClickedID: 11476
+    m_SelectedIDs: b8320000
+    m_LastClickedID: 12984
     m_ExpandedIDs: 00000000962c000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -641,7 +641,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 0
-    m_ExpandedInstanceIDs: b03000005a30000034370000
+    m_ExpandedInstanceIDs: b03000005a30000034370000e82c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -705,7 +705,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_PreviewWindow: {fileID: 0}
-  m_LastInspectedObjectInstanceID: -1
+  m_LastInspectedObjectInstanceID: 14684
   m_LastVerticalScrollValue: 0
 --- !u!114 &18
 MonoBehaviour:
