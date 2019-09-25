@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShipController : MonoBehaviour
 {
-
+	private float DEADZONE_SIZE = .05f;
 	private Rigidbody myRigidBody;
 
     // Start is called before the first frame update
@@ -30,20 +30,30 @@ public class ShipController : MonoBehaviour
         myRigidBody.AddForce(combinedForce);
         //myRigidBody.velocity = combinedForce;
 
-        // Get Rotation Inputs Since Update
-        Vector2 screenCenter = new Vector2(Screen.width/2, Screen.height/2);
-        Vector2 mousePosition = Input.mousePosition;
+        // Calculate Roll
         float rotateRoll = Input.GetAxis("ControlRoll");
-        Vector2 screenRotation = new Vector2(
-        	(screenCenter[0] - mousePosition[0]) / Screen.width,
-        	(screenCenter[1] - mousePosition[1]) / Screen.height
-        );
 
+        // Calculate Pitch & Yaw
+        float deadZoneRadiusInPixels = (Screen.height * DEADZONE_SIZE) / 2;
+        float mousePercentX = (Screen.width/2 - (Input.mousePosition[0] + 20)) / Screen.height;
+        float mousePercentY = (Screen.height/2 - (Input.mousePosition[1] - 20)) / Screen.height;
+
+        // Account for Dead Zone
+        if (mousePercentX < DEADZONE_SIZE/2 && mousePercentX > -DEADZONE_SIZE/2) {
+        	mousePercentX = 0;
+        } else {
+        	mousePercentX = mousePercentX + (-1 * mousePercentX * (DEADZONE_SIZE/2));
+        }
+        if (mousePercentY < DEADZONE_SIZE/2 && mousePercentY > -DEADZONE_SIZE/2) {
+        	mousePercentY = 0;
+        } else {
+        	mousePercentY = mousePercentY + (-1 * mousePercentY * (DEADZONE_SIZE/2));
+        }
 
         // Apply Rotation
         transform.Rotate(
-        	screenRotation[1] * 5,
-        	-screenRotation[0] * 5,
+        	mousePercentY * 5,
+        	-mousePercentX * 5,
         	-rotateRoll,
         	Space.Self
         );
