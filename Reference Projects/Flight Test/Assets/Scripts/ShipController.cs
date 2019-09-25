@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ShipController : MonoBehaviour
 {
+	public GameObject cameraEmpty;
+
 	private float DEADZONE_SIZE = .05f;
 	private Rigidbody myRigidBody;
 
@@ -16,7 +18,7 @@ public class ShipController : MonoBehaviour
     void FixedUpdate() {
 
 
-    	/*--- Translation ---*/
+    	/*--- Ship Translation ---*/
 
         // Get Movement Inputs Since Update
         float moveForwardBack = Input.GetAxis("ControlForwardBack");
@@ -34,7 +36,7 @@ public class ShipController : MonoBehaviour
         //myRigidBody.velocity = combinedForce;
 
 
-        /*--- Rotation ---*/
+        /*--- Ship Rotation ---*/
 
         // Calculate Roll
         float rotateRoll = Input.GetAxis("ControlRoll");
@@ -56,13 +58,40 @@ public class ShipController : MonoBehaviour
         	mousePercentY = mousePercentY + (-1 * mousePercentY * (DEADZONE_SIZE/2));
         }
 
+        // Apply Transformations
+        float shipPitch = mousePercentY * 5;
+        float shipYaw = -mousePercentX * 5;
+        float shipRoll = -rotateRoll;
+
         // Apply Rotation
         transform.Rotate(
-        	mousePercentY * 5,
-        	-mousePercentX * 5,
-        	-rotateRoll,
+        	shipPitch,
+        	shipYaw,
+        	shipRoll,
         	Space.Self
         );
+
+
+        /*--- Camera Movement/Rotation ---*/
+
+        // Calculate Camera Shift
+        float cameraShiftX = -mousePercentY * 3;
+        float cameraShiftY = mousePercentX * 3;
+        float cameraShiftZ = 0;
+
+        // Apply Camera Rotation
+        cameraEmpty.transform.eulerAngles = new Vector3(
+        	transform.eulerAngles.x + cameraShiftX,
+        	transform.eulerAngles.y + cameraShiftY,
+        	transform.eulerAngles.z + cameraShiftZ
+    	);
+
+    	// Apply Camera Movement
+    	cameraEmpty.transform.localPosition = new Vector3(
+    		-mousePercentX * .3f,
+    		-mousePercentY * .3f,
+    		0
+    	);
     }
 
 
