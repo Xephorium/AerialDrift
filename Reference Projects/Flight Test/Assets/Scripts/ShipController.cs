@@ -5,9 +5,11 @@ using UnityEngine;
 public class ShipController : MonoBehaviour
 {
 	public GameObject cameraEmpty;
+	public Camera camera;
 
 	private float DEADZONE_SIZE = .05f;
 	private Rigidbody myRigidBody;
+	private bool boost = false;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +19,10 @@ public class ShipController : MonoBehaviour
 
     void FixedUpdate() {
 
+    	/*--- Detect Keypresses ---*/
+
+    	boost = Input.GetKey(KeyCode.LeftShift);
+  
 
     	/*--- Ship Translation ---*/
 
@@ -27,6 +33,11 @@ public class ShipController : MonoBehaviour
         // Create Individual Force Vectors
         Vector3 forceForwardBack = transform.forward * 10 * (moveForwardBack);
         Vector3 forceUpDown = transform.up * 10 * (moveUpDown);
+
+        // Apply Boost
+        if (moveForwardBack > 0 && boost) {
+        	forceForwardBack *= 2;
+        }
 
         // Combine Force Vectors
         Vector3 combinedForce = forceForwardBack + forceUpDown;
