@@ -4,33 +4,41 @@ using UnityEngine;
 
 public class ShipController : MonoBehaviour
 {
+
+	/*--- Variable Declarations ---*/
+
 	public GameObject cameraEmpty;
 	public Camera camera;
 
-	private float DEFAULT_FOV = 60f;
-	private float BOOST_FOV = 70f;
+	private static float DEFAULT_FOV = 70f;
+	private static float BOOST_FOV = 80f;
+	private static float boostAnimationTime = .2f;
 
 	private Rigidbody myRigidBody;
 
 	private float boostTimeStart = 0f;
 	private float boostTimeEnd = 0f;
-	private float boostFOVStart = 0f;
-	private float boostFOVEnd = 0f;
-	private float boostAnimationTime = .5f;
+	private float boostFOVStart = DEFAULT_FOV;
+	private float boostFOVEnd = DEFAULT_FOV;
 	private bool boostChange = false;
 	private bool boost = false;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+
+	/*--- Lifecycle Methods ---*/
+
+    // Called Before First Frame Update
+    void Start() {
     	myRigidBody = GetComponent<Rigidbody>();
     }
 
+    // Called Regularly (Regardless Of Framerate)
     void FixedUpdate() {
 
     	/*--- Detect Keypresses ---*/
 
-    	if (Input.GetKey(KeyCode.LeftShift) != boost) {
+    	if (Input.GetKey(KeyCode.LeftShift) != boost
+    		&& (Input.GetAxis("ControlForwardBack") > 0
+    			|| !Input.GetKey(KeyCode.LeftShift))) {
     		boostChange = true;
     	} else {
     		boostChange = false;
@@ -108,11 +116,10 @@ public class ShipController : MonoBehaviour
     	);
 
 
-    	/*--- Update Camera FOV ---*/
+    	/*--- Update Boost Variables ---*/
 
+		// Set Boost Variables on Change
     	if (boostChange) {
-
-    		// Get Boost Variables
     		boostTimeStart = Time.fixedTime;
     		boostTimeEnd = boostTimeStart + boostAnimationTime;
     		boostFOVStart = camera.fieldOfView;
@@ -121,20 +128,25 @@ public class ShipController : MonoBehaviour
     		} else {
     			boostFOVEnd = DEFAULT_FOV;
     		}
-
-    		// Calculate & Set FOV
-    		if (camera.fieldOfView < boostFOVEnd) {
-    			camera.fieldOfView = BOOST_FOV;
-    		} else {
-    			camera.fieldOfView = DEFAULT_FOV;
-    		}
     	}
     }
 
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    // Called Once Per Frame
+    void Update() {
+
+    	
+    	/*--- Update FOV ---*/
+
+    	// If FOV Animating
+    	if (camera.fieldOfView != boostFOVEnd) {
+    		
+    		// Calculate & Set FOV
+    		float timeElapseFactor = 1 - Mathf.Abs((boostTimeEnd - Time.fixedTime)/(boostTimeEnd - boostTimeStart));
+			float normalizedInput = timeElapseFactor * (Mathf.PI / 3);
+			float fovFactor = .5f * (1 + Mathf.Sin(3 * normalizedInput - Mathf.PI / 2));
+			float currentFOV = boostFOVStart + (fovFactor * (boostFOVEnd - boostFOVStart));
+			camera.fieldOfView = currentFOV;
+    	}
     }
 }
