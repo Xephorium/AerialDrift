@@ -9,12 +9,16 @@ public class ShipController : MonoBehaviour
 
 	public GameObject cameraEmpty;
 	public Camera camera;
+	public GameObject trailEmitterLeft;
+	public GameObject trailEmitterRight;
 
 	private static float DEFAULT_FOV = 70f;
 	private static float BOOST_FOV = 80f;
 	private static float boostAnimationTime = .2f;
 
 	private Rigidbody myRigidBody;
+	private TrailRenderer trailLeft;
+	private TrailRenderer trailRight;
 
 	private float boostTimeStart = 0f;
 	private float boostTimeEnd = 0f;
@@ -29,6 +33,8 @@ public class ShipController : MonoBehaviour
     // Called Before First Frame Update
     void Start() {
     	myRigidBody = GetComponent<Rigidbody>();
+    	trailLeft = trailEmitterLeft.GetComponent<TrailRenderer>();
+    	trailRight = trailEmitterRight.GetComponent<TrailRenderer>();
     }
 
     // Called Regularly (Regardless Of Framerate)
@@ -128,6 +134,8 @@ public class ShipController : MonoBehaviour
     		} else {
     			boostFOVEnd = DEFAULT_FOV;
     		}
+    		trailLeft.emitting = boost;
+    		trailRight.emitting = boost;
     	}
     }
 
