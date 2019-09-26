@@ -7,8 +7,17 @@ public class ShipController : MonoBehaviour
 	public GameObject cameraEmpty;
 	public Camera camera;
 
-	private float DEADZONE_SIZE = .05f;
+	private float DEFAULT_FOV = 60f;
+	private float BOOST_FOV = 70f;
+
 	private Rigidbody myRigidBody;
+
+	private float boostTimeStart = 0f;
+	private float boostTimeEnd = 0f;
+	private float boostFOVStart = 0f;
+	private float boostFOVEnd = 0f;
+	private float boostAnimationTime = .5f;
+	private bool boostChange = false;
 	private bool boost = false;
 
     // Start is called before the first frame update
@@ -21,10 +30,15 @@ public class ShipController : MonoBehaviour
 
     	/*--- Detect Keypresses ---*/
 
+    	if (Input.GetKey(KeyCode.LeftShift) != boost) {
+    		boostChange = true;
+    	} else {
+    		boostChange = false;
+    	}
     	boost = Input.GetKey(KeyCode.LeftShift);
   
 
-    	/*--- Ship Translation ---*/
+    	/*--- Update Ship Translation ---*/
 
         // Get Movement Inputs Since Update
         float moveForwardBack = Input.GetAxis("ControlForwardBack");
@@ -47,7 +61,7 @@ public class ShipController : MonoBehaviour
         //myRigidBody.velocity = combinedForce;
 
 
-        /*--- Ship Rotation ---*/
+        /*--- Update Ship Rotation ---*/
 
         // Calculate Roll
         float rotateRoll = Input.GetAxis("ControlRoll");
@@ -72,7 +86,7 @@ public class ShipController : MonoBehaviour
         );
 
 
-        /*--- Camera Movement/Rotation ---*/
+        /*--- Update Camera ---*/
 
         // Calculate Camera Shift
         float cameraShiftX = -mousePercentY * 3;
@@ -92,6 +106,29 @@ public class ShipController : MonoBehaviour
     		-mousePercentY * .3f,
     		0
     	);
+
+
+    	/*--- Update Camera FOV ---*/
+
+    	if (boostChange) {
+
+    		// Get Boost Variables
+    		boostTimeStart = Time.fixedTime;
+    		boostTimeEnd = boostTimeStart + boostAnimationTime;
+    		boostFOVStart = camera.fieldOfView;
+    		if (boost) {
+    			boostFOVEnd = BOOST_FOV;
+    		} else {
+    			boostFOVEnd = DEFAULT_FOV;
+    		}
+
+    		// Calculate & Set FOV
+    		if (camera.fieldOfView < boostFOVEnd) {
+    			camera.fieldOfView = BOOST_FOV;
+    		} else {
+    			camera.fieldOfView = DEFAULT_FOV;
+    		}
+    	}
     }
 
 
