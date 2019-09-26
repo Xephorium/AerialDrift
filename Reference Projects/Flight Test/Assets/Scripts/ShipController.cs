@@ -25,6 +25,7 @@ public class ShipController : MonoBehaviour
 	private float boostFOVStart = DEFAULT_FOV;
 	private float boostFOVEnd = DEFAULT_FOV;
 	private bool boostChange = false;
+	private bool boostAnimating = false;
 	private bool boost = false;
 
 
@@ -129,6 +130,7 @@ public class ShipController : MonoBehaviour
     		boostTimeStart = Time.fixedTime;
     		boostTimeEnd = boostTimeStart + boostAnimationTime;
     		boostFOVStart = camera.fieldOfView;
+    		boostAnimating = true;
     		if (boost) {
     			boostFOVEnd = BOOST_FOV;
     		} else {
@@ -136,6 +138,11 @@ public class ShipController : MonoBehaviour
     		}
     		trailLeft.emitting = boost;
     		trailRight.emitting = boost;
+    	}
+
+    	// Note FOV Animation Completion
+    	if (Time.fixedTime >= boostTimeEnd) {
+    		boostAnimating = false;
     	}
     }
 
@@ -146,8 +153,8 @@ public class ShipController : MonoBehaviour
     	
     	/*--- Update FOV ---*/
 
-    	// If FOV Animating
-    	if (camera.fieldOfView != boostFOVEnd) {
+    	// If FOV Animation Incomplete
+    	if (boostAnimating) {
     		
     		// Calculate & Set FOV
     		float timeElapseFactor = 1 - Mathf.Abs((boostTimeEnd - Time.fixedTime)/(boostTimeEnd - boostTimeStart));
