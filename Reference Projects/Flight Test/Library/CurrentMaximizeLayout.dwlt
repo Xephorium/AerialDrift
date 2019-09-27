@@ -22,10 +22,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
-  m_MinSize: {x: 707, y: 472}
-  m_MaxSize: {x: 18002, y: 14022}
+  m_MinSize: {x: 709, y: 472}
+  m_MaxSize: {x: 18004, y: 14022}
   vertical: 0
-  controlID: 2210
+  controlID: 13536
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 422}
   m_MaxSize: {x: 4002, y: 8022}
   vertical: 1
-  controlID: 1986
+  controlID: 13507
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -151,8 +151,8 @@ MonoBehaviour:
     y: 0
     width: 1156
     height: 566
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 222}
+  m_MaxSize: {x: 4002, y: 4022}
   m_ActualView: {fileID: 5}
   m_Panes:
   - {fileID: 5}
@@ -194,9 +194,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -21.030926, y: 0.50789666, z: -12.59612}
+    m_Target: {x: -27.292925, y: 1.9829328, z: -13.327364}
     speed: 2
-    m_Value: {x: -21.030926, y: 0.50789666, z: -12.59612}
+    m_Value: {x: -27.292925, y: 1.9829328, z: -13.327364}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -225,9 +225,9 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: -0.005539401, y: 0.40287647, z: -0.0023165552, w: -0.9154328}
+    m_Target: {x: -0.02629515, y: -0.64389443, z: 0.022339748, w: -0.7646034}
     speed: 2
-    m_Value: {x: -0.0055383965, y: 0.40280342, z: -0.0023161352, w: -0.9152669}
+    m_Value: {x: -0.026289774, y: -0.6437628, z: 0.022335181, w: -0.7644471}
   m_Size:
     m_Target: 3.8889937
     speed: 2
@@ -250,7 +250,7 @@ MonoBehaviour:
     m_DynamicClip: 1
     m_OcclusionCulling: 0
   m_ShowGlobalGrid: 1
-  m_LastSceneViewRotation: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
+  m_LastSceneViewRotation: {x: -0.033653155, y: -0.89496976, z: 0.06863572, w: -0.43995315}
   m_LastSceneViewOrtho: 0
   m_ReplacementShader: {fileID: 0}
   m_ReplacementString: 
@@ -307,7 +307,7 @@ MonoBehaviour:
   m_MinSize: {x: 230, y: 472}
   m_MaxSize: {x: 10000, y: 14022}
   vertical: 1
-  controlID: 1945
+  controlID: 13537
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -365,7 +365,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 6efbffffd62f00000e30000070300000f630000028310000
+      m_ExpandedIDs: 6efbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -454,11 +454,11 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Materials
+    - Assets/Scripts
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Materials
+  - Assets/Scripts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Xephorium\Home\Projects\Game Dev\Unity Projects\UMSL
     Final\Reference Projects\Flight Test
@@ -466,8 +466,8 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 3e2e0000
-    m_LastClickedID: 11838
+    m_SelectedIDs: d42c0000
+    m_LastClickedID: 11476
     m_ExpandedIDs: 00000000962c000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -521,8 +521,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 0e300000643100000230000022310000d62f0000a6300000803100007a310000f63000004e3100007e30000040310000
-    m_LastClickedInstanceID: 12608
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: b03000005a30000034370000e82c0000
     m_RenameOverlay:
@@ -571,8 +571,8 @@ MonoBehaviour:
     y: 0
     width: 375
     height: 947
-  m_MinSize: {x: 275, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 277, y: 122}
+  m_MaxSize: {x: 4002, y: 4022}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 13}
@@ -615,7 +615,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_PreviewWindow: {fileID: 0}
-  m_LastInspectedObjectInstanceID: 12246
+  m_LastInspectedObjectInstanceID: -1
   m_LastVerticalScrollValue: 0
 --- !u!114 &14
 MonoBehaviour:
@@ -653,5 +653,5 @@ MonoBehaviour:
     m_ControlHash: 1412526313
     m_PrefName: Preview_InspectorPreview
   m_PreviewWindow: {fileID: 0}
-  m_LastInspectedObjectInstanceID: 12246
+  m_LastInspectedObjectInstanceID: -1
   m_LastVerticalScrollValue: 0

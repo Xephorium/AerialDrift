@@ -7,35 +7,77 @@ public class ShipController : MonoBehaviour
 
 	/*--- Variable Declarations ---*/
 
+	// Public Variables
 	public GameObject cameraEmpty;
 	public Camera camera;
 	public GameObject trailEmitterLeft;
 	public GameObject trailEmitterRight;
+	public GameObject jetTop;
+	public GameObject jetSmokeTop;
+	public GameObject jetLeft;
+	public GameObject jetSmokeLeft;
+	public GameObject jetRight;
+	public GameObject jetSmokeRight;
 
+	// Boost Constants
 	private static float DEFAULT_FOV = 70f;
 	private static float BOOST_FOV = 80f;
 	private static float boostAnimationTime = .2f;
 
-	private Rigidbody myRigidBody;
-	private TrailRenderer trailLeft;
-	private TrailRenderer trailRight;
-
+	// Boost Variables
 	private float boostTimeStart = 0f;
 	private float boostTimeEnd = 0f;
 	private float boostFOVStart = DEFAULT_FOV;
 	private float boostFOVEnd = DEFAULT_FOV;
+	private float boostAnimationFactor = 0f;
 	private bool boostChange = false;
 	private bool boostAnimating = false;
 	private bool boost = false;
+
+	// Jet Exhaust Constants
+	private float jetLengthFactor = .5f;
+
+	// Jet Exhaust Variables
+	private float jetStartSpeed;
+	private float jetDefaultStartSpeed;
+	private float jetSmokeStartSpeed;
+	private float jetSmokeDefaultStartSpeed;
+	private ParticleSystem.MainModule jetCurveTop;
+	private ParticleSystem.MainModule jetSmokeCurveTop;
+	private ParticleSystem.MainModule jetCurveLeft;
+	private ParticleSystem.MainModule jetSmokeCurveLeft;
+	private ParticleSystem.MainModule jetCurveRight;
+	private ParticleSystem.MainModule jetSmokeCurveRight;
+
+	// Private Variables
+	private Rigidbody myRigidBody;
+	private TrailRenderer trailLeft;
+	private TrailRenderer trailRight;
 
 
 	/*--- Lifecycle Methods ---*/
 
     // Called Before First Frame Update
     void Start() {
+
+    	// Get Components
     	myRigidBody = GetComponent<Rigidbody>();
     	trailLeft = trailEmitterLeft.GetComponent<TrailRenderer>();
     	trailRight = trailEmitterRight.GetComponent<TrailRenderer>();
+
+    	// Get Jet Exhaust Components
+    	jetCurveTop = jetTop.GetComponent<ParticleSystem>().main;
+    	jetSmokeCurveTop = jetSmokeTop.GetComponent<ParticleSystem>().main;
+    	jetCurveLeft = jetLeft.GetComponent<ParticleSystem>().main;
+    	jetSmokeCurveLeft = jetSmokeLeft.GetComponent<ParticleSystem>().main;
+    	jetCurveRight = jetRight.GetComponent<ParticleSystem>().main;
+    	jetSmokeCurveRight = jetSmokeRight.GetComponent<ParticleSystem>().main;
+
+    	// Get Jet Exhaust Variables
+    	jetDefaultStartSpeed = jetCurveTop.startSpeed.constant;
+    	jetSmokeDefaultStartSpeed = jetSmokeCurveTop.startSpeed.constant;
+    	jetStartSpeed = jetDefaultStartSpeed;
+    	jetSmokeStartSpeed = jetSmokeDefaultStartSpeed;
     }
 
     // Called Regularly (Regardless Of Framerate)
@@ -60,8 +102,8 @@ public class ShipController : MonoBehaviour
         float moveUpDown = Input.GetAxis("ControlUpDown");
 
         // Create Individual Force Vectors
-        Vector3 forceForwardBack = transform.forward * 10 * (moveForwardBack);
-        Vector3 forceUpDown = transform.up * 10 * (moveUpDown);
+        Vector3 forceForwardBack = transform.forward * 10 * moveForwardBack;
+        Vector3 forceUpDown = transform.up * 10 * moveUpDown;
 
         // Apply Boost
         if (moveForwardBack > 0 && boost) {
@@ -157,11 +199,30 @@ public class ShipController : MonoBehaviour
     	if (boostAnimating) {
     		
     		// Calculate & Set FOV
-    		float timeElapseFactor = 1 - Mathf.Abs((boostTimeEnd - Time.fixedTime)/(boostTimeEnd - boostTimeStart));
-			float normalizedInput = timeElapseFactor * (Mathf.PI / 3);
+    		boostAnimationFactor = 1 - Mathf.Abs((boostTimeEnd - Time.fixedTime)/(boostTimeEnd - boostTimeStart));
+			float normalizedInput = boostAnimationFactor * (Mathf.PI / 3);
 			float fovFactor = .5f * (1 + Mathf.Sin(3 * normalizedInput - Mathf.PI / 2));
 			float currentFOV = boostFOVStart + (fovFactor * (boostFOVEnd - boostFOVStart));
 			camera.fieldOfView = currentFOV;
     	}
+
+
+    	/*--- Update Jet Trails ---*/
+
+		// Calculate Exhaust Lengths
+		jetStartSpeed = jetDefaultStartSpeed
+    		+ (jetDefaultStartSpeed * jetLengthFactor * (boost ? 1 : 0))
+    		+ (jetDefaultStartSpeed * jetLengthFactor * (Input.GetAxis("ControlForwardBack") > 0 ? 1 : 0));
+    	jetSmokeStartSpeed = jetSmokeDefaultStartSpeed
+    		+ (jetSmokeDefaultStartSpeed * jetLengthFactor * (boost ? 1 : 0))
+    		+ (jetSmokeDefaultStartSpeed * jetLengthFactor * (Input.GetAxis("ControlForwardBack") > 0 ? 1 : 0));
+
+    	// Set Exhaust Lengths
+    	jetCurveTop.startSpeed = jetStartSpeed;
+    	jetSmokeCurveTop.startSpeed = jetSmokeStartSpeed;
+    	jetCurveLeft.startSpeed = jetStartSpeed;
+    	jetSmokeCurveLeft.startSpeed = jetSmokeStartSpeed;
+    	jetCurveRight.startSpeed = jetStartSpeed;
+    	jetSmokeCurveRight.startSpeed = jetSmokeStartSpeed;
     }
 }
