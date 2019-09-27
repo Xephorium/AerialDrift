@@ -115,7 +115,7 @@ MonoBehaviour:
   m_MinSize: {x: 713, y: 494}
   m_MaxSize: {x: 18008, y: 14044}
   vertical: 0
-  controlID: 226
+  controlID: 5561
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 422}
   m_MaxSize: {x: 4002, y: 8022}
   vertical: 1
-  controlID: 227
+  controlID: 5562
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -217,7 +217,7 @@ MonoBehaviour:
   m_MinSize: {x: 234, y: 494}
   m_MaxSize: {x: 10004, y: 14044}
   vertical: 1
-  controlID: 199
+  controlID: 5583
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -414,9 +414,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -19.189657, y: 0.48919016, z: -14.374723}
+    m_Target: {x: -20.279884, y: -0.16584039, z: -12.614431}
     speed: 2
-    m_Value: {x: -19.189657, y: 0.48919016, z: -14.374723}
+    m_Value: {x: -20.279884, y: -0.16584039, z: -12.614431}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -445,13 +445,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: -0.18712902, y: 0.2551567, z: -0.050420936, w: -0.9474643}
+    m_Target: {x: -0.10878005, y: 0.2469416, z: -0.027840013, w: -0.96269596}
     speed: 2
-    m_Value: {x: -0.1856749, y: 0.25518703, z: -0.05002906, w: -0.9475766}
+    m_Value: {x: -0.107316, y: 0.24693722, z: -0.027464207, w: -0.9626791}
   m_Size:
-    m_Target: 1.4889941
+    m_Target: 3.8889937
     speed: 2
-    m_Value: 1.7889941
+    m_Value: 3.8889937
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -571,11 +571,11 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Materials
+    - Assets/Scripts
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Materials
+  - Assets/Scripts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Xephorium\Home\Projects\Game Dev\Unity Projects\UMSL
     Final\Reference Projects\Flight Test
@@ -583,8 +583,8 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 3e2e0000
-    m_LastClickedID: 11838
+    m_SelectedIDs: d42c0000
+    m_LastClickedID: 11476
     m_ExpandedIDs: 00000000962c000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -640,7 +640,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: b03000005a30000034370000e82c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -705,7 +705,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_PreviewWindow: {fileID: 0}
-  m_LastInspectedObjectInstanceID: -1
+  m_LastInspectedObjectInstanceID: 12246
   m_LastVerticalScrollValue: 0
 --- !u!114 &18
 MonoBehaviour:
