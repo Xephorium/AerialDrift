@@ -35,7 +35,7 @@ public class ShipController : MonoBehaviour
 	private bool boost = false;
 
 	// Jet Exhaust Constants
-	private float jetLengthFactor = .5f;
+	private float jetLengthFactor = .85f;
 
 	// Jet Exhaust Variables
 	private float jetStartSpeed;
