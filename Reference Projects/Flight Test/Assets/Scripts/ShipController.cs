@@ -22,7 +22,7 @@ public class ShipController : MonoBehaviour
 	// Boost Constants
 	private static float DEFAULT_FOV = 70f;
 	private static float BOOST_FOV = 80f;
-	private static float boostAnimationTime = .2f;
+	private static float boostAnimationTime = .4f;
 
 	// Boost Variables
 	private float boostTimeStart = 0f;
