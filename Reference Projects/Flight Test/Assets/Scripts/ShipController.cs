@@ -19,6 +19,14 @@ public class ShipController : MonoBehaviour
 	public GameObject jetRight;
 	public GameObject jetSmokeRight;
 
+	// Private Constants
+	private static float CAMERA_MOVEMENT_FACTOR = .8f;
+
+	// Private Variables
+	private Rigidbody myRigidBody;
+	private TrailRenderer trailLeft;
+	private TrailRenderer trailRight;
+
 	// Boost Constants
 	private static float DEFAULT_FOV = 70f;
 	private static float BOOST_FOV = 80f;
@@ -48,11 +56,6 @@ public class ShipController : MonoBehaviour
 	private ParticleSystem.MainModule jetSmokeCurveLeft;
 	private ParticleSystem.MainModule jetCurveRight;
 	private ParticleSystem.MainModule jetSmokeCurveRight;
-
-	// Private Variables
-	private Rigidbody myRigidBody;
-	private TrailRenderer trailLeft;
-	private TrailRenderer trailRight;
 
 
 	/*--- Lifecycle Methods ---*/
@@ -159,8 +162,8 @@ public class ShipController : MonoBehaviour
 
     	// Apply Camera Movement
     	cameraEmpty.transform.localPosition = new Vector3(
-    		-mousePercentX * .3f,
-    		-mousePercentY * .3f,
+    		-mousePercentX * (CAMERA_MOVEMENT_FACTOR / 2),
+    		-mousePercentY * CAMERA_MOVEMENT_FACTOR,
     		0
     	);
 
