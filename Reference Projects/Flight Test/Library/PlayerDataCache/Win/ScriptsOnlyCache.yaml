@@ -1,15 +1,22 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
-    - ShipController
+    - CameraController
+    - GameController
+    - MenuRotator
+    - UIController
+    - ViperController
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
+    - UnityEditor.TestTools.TestRunner.TestListCacheData
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
+    - UnityEngine.UI.Outline
     - UnityEngine.UI.RawImage
+    - UnityEngine.UI.Text
   sceneClasses:
     Assets/Scenes/SampleScene.unity:
     - Class: 1
@@ -49,6 +56,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9672}
     - Class: 114
+      Script: {instanceID: 9820}
+    - Class: 114
       Script: {instanceID: 10226}
     - Class: 114
       Script: {instanceID: 10580}
@@ -57,8 +66,20 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11000}
     - Class: 114
+      Script: {instanceID: 11288}
+    - Class: 114
       Script: {instanceID: 11340}
+    - Class: 114
+      Script: {instanceID: 15346}
+    - Class: 114
+      Script: {instanceID: 17690}
+    - Class: 114
+      Script: {instanceID: 31010}
+    - Class: 114
+      Script: {instanceID: 51892}
     - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
       Script: {instanceID: 0}
     - Class: 135
       Script: {instanceID: 0}
@@ -75,6 +96,8 @@ ScriptsOnlyBuild:
     - Class: 223
       Script: {instanceID: 0}
     - Class: 224
+      Script: {instanceID: 0}
+    - Class: 225
       Script: {instanceID: 0}
     - Class: 258
       Script: {instanceID: 0}
@@ -363,10 +386,10 @@ ScriptsOnlyBuild:
     className: Physics2DRaycaster
   - hash:
       serializedVersion: 2
-      Hash: d83d6676986457079393f042e4e5545d
+      Hash: c3a04f5dd9f72aacb2e2b6f275bf4184
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: ShipController
+    className: ViperController
   - hash:
       serializedVersion: 2
       Hash: c1933cc0a2f4ff6eb13333347497beb3
@@ -499,8 +522,32 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MenuRotator
+  - hash:
+      serializedVersion: 2
+      Hash: 169967f940cf28b2ffa777c4b9e0e0bc
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: UIController
+  - hash:
+      serializedVersion: 2
+      Hash: f66244b7545c3911b5a9e0680bf7d018
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GameController
+  - hash:
+      serializedVersion: 2
+      Hash: 289ae39dc6006be9d4bb0c76f4538094
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CameraController
   platform: 5
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/Users/Xephorium/Home/Projects/Game Dev/Unity Projects/UMSL Final/Reference
+  playerPath: C:/Users/Xephorium/Documents/Home/Projects/Games/Unity/UMSL Final/Reference
     Projects/Flight Test/Build/Flight Test.exe
