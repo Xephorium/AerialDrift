@@ -8,7 +8,6 @@ ScriptsOnlyBuild:
     - ViperController
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
-    - UnityEditor.TestTools.TestRunner.TestListCacheData
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
@@ -58,25 +57,25 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9820}
     - Class: 114
-      Script: {instanceID: 10226}
+      Script: {instanceID: 9876}
     - Class: 114
-      Script: {instanceID: 10580}
+      Script: {instanceID: 10228}
     - Class: 114
-      Script: {instanceID: 10832}
+      Script: {instanceID: 10312}
     - Class: 114
-      Script: {instanceID: 11000}
+      Script: {instanceID: 10584}
     - Class: 114
-      Script: {instanceID: 11288}
+      Script: {instanceID: 10644}
     - Class: 114
-      Script: {instanceID: 11340}
+      Script: {instanceID: 10838}
     - Class: 114
-      Script: {instanceID: 15346}
+      Script: {instanceID: 10904}
     - Class: 114
-      Script: {instanceID: 17690}
+      Script: {instanceID: 11008}
     - Class: 114
-      Script: {instanceID: 31010}
+      Script: {instanceID: 11296}
     - Class: 114
-      Script: {instanceID: 51892}
+      Script: {instanceID: 11348}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -180,6 +179,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
     className: TestResultRendererCallback
+  - hash:
+      serializedVersion: 2
+      Hash: 289ae39dc6006be9d4bb0c76f4538094
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CameraController
   - hash:
       serializedVersion: 2
       Hash: 234235b9fb07320d11497e08a726cc56
@@ -290,6 +295,12 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
+      Hash: f66244b7545c3911b5a9e0680bf7d018
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GameController
+  - hash:
+      serializedVersion: 2
       Hash: b3ab2106268377ffe25dd18ac23dca28
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -336,6 +347,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: RawImage
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MenuRotator
   - hash:
       serializedVersion: 2
       Hash: 5ad4aa237d47ac2bab17bacb672edf7a
@@ -396,6 +413,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: TimelineAsset
+  - hash:
+      serializedVersion: 2
+      Hash: 169967f940cf28b2ffa777c4b9e0e0bc
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: UIController
   - hash:
       serializedVersion: 2
       Hash: 3b760e6526e13f7504f59e210145899a
@@ -522,30 +545,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: MenuRotator
-  - hash:
-      serializedVersion: 2
-      Hash: 169967f940cf28b2ffa777c4b9e0e0bc
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: UIController
-  - hash:
-      serializedVersion: 2
-      Hash: f66244b7545c3911b5a9e0680bf7d018
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: GameController
-  - hash:
-      serializedVersion: 2
-      Hash: 289ae39dc6006be9d4bb0c76f4538094
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: CameraController
   platform: 5
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
