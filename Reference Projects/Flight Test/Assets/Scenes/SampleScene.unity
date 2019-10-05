@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11097,11 +11097,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Biplane
       objectReference: {fileID: 0}
-    - target: {fileID: 2534866581884222612, guid: c805862acc591224facadb3b034710a9,
-        type: 3}
-      propertyPath: m_Name
-      value: Biplane
-      objectReference: {fileID: 0}
     - target: {fileID: -5975033157549033438, guid: c805862acc591224facadb3b034710a9,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -11207,6 +11202,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 26ab653b2c246ac4fbd5838c394724d6, type: 2}
+    - target: {fileID: 2534866581884222612, guid: c805862acc591224facadb3b034710a9,
+        type: 3}
+      propertyPath: m_Name
+      value: Biplane
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c805862acc591224facadb3b034710a9, type: 3}
 --- !u!1 &744611198
@@ -33410,7 +33410,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.26415092, g: 0.26415092, b: 0.26415092, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -33444,7 +33444,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2017909842}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
   m_Name: 
