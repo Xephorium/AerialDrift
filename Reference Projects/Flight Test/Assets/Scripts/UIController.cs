@@ -3,7 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Windows-Specific Cursor Hackery
+using System.Runtime.InteropServices;
+
 public class UIController : MonoBehaviour {
+
+    // Windows-Specific Cursor Hackery
+    [DllImport("user32.dll")]
+    static extern bool SetCursorPos(int X, int Y);
 
 
 	/*--- Variable Declarations ---*/
@@ -61,5 +68,10 @@ public class UIController : MonoBehaviour {
     private void hideFlightUI() {
     	flightCanvasGroup.alpha = 0f;
     	flightCanvasGroup.blocksRaycasts = false;
+    }
+
+    // Windows-Specific Cursor Hackery
+    public void centerCursor() {   
+        SetCursorPos(Screen.width / 2 - 30,Screen.height / 2 - 30);
     }
 }

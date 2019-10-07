@@ -99,6 +99,7 @@ public class GameController : MonoBehaviour {
     		UIController.instance.showSelectUI();
     	} else {
     		UIController.instance.showFlightUI();
+            UIController.instance.centerCursor();
     	}
     }
 
