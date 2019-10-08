@@ -202,6 +202,12 @@ public class ViperController : MonoBehaviour
             if (Time.fixedTime >= boostTimeEnd) {
                 boostAnimating = false;
             }
+
+        } else {
+
+            // Apply Default Gravity
+            Vector3 forceGravity = new Vector3(0, -9.81f, 0);
+            myRigidBody.AddForce(forceGravity);
         }
     }
 

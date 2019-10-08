@@ -99,6 +99,11 @@ public class BiplaneController : MonoBehaviour {
             float shipYaw = -mousePercentX * 5;
             float shipRoll = -rotateRoll;
 
+            // Cap Rotation Based on Speed
+            shipPitch -= ((shipPitch * .4f) * (1 - speedFactor));
+            shipYaw -= ((shipYaw * .4f) * (1 - speedFactor));
+            shipRoll -= ((shipRoll * .4f) * (1 - speedFactor));;
+
             // Apply Rotation
             transform.Rotate(
                 shipPitch,
@@ -130,17 +135,16 @@ public class BiplaneController : MonoBehaviour {
             );
 
 
-
             /*--- Update Control Surfaces ---*/
 
             // Calculate Angles
-            float horizontalFinAngle = MAX_FIN_ANGLE * -mousePercentY * 8;
+            float horizontalFinAngle = MAX_FIN_ANGLE * -mousePercentY * 7;
             if (horizontalFinAngle > MAX_FIN_ANGLE) {
                 horizontalFinAngle = MAX_FIN_ANGLE;
             } else if (horizontalFinAngle < -MAX_FIN_ANGLE) {
                 horizontalFinAngle = -MAX_FIN_ANGLE;
             }
-            float verticalFinAngle = (MAX_FIN_ANGLE / 2) * mousePercentX * 8;
+            float verticalFinAngle = (MAX_FIN_ANGLE / 2) * mousePercentX * 7;
             if (verticalFinAngle > MAX_FIN_ANGLE) {
                 verticalFinAngle = MAX_FIN_ANGLE;
             } else if (verticalFinAngle < -MAX_FIN_ANGLE) {
