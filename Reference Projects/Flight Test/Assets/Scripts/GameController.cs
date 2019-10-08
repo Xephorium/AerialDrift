@@ -39,7 +39,7 @@ public class GameController : MonoBehaviour {
     		// Back Click
     		if (Input.GetKeyDown("escape")) {
     			updateGameState(GameState.select);
-    			// TODO - Reset Biplane
+    			BiplaneController.instance.reset();
     			// TODO - Reset Helicopter
     			ViperController.instance.reset();
     		}
@@ -65,7 +65,8 @@ public class GameController : MonoBehaviour {
     			int mousePosition = (int) (Input.mousePosition[0] / (Screen.width / 3));
     			
     			if (mousePosition == 0) {
-    				// TODO - Select Biplane
+    				BiplaneController.instance.reset();
+                    updateGameState(GameState.flightBiplane);
     			} else if (mousePosition == 1) {
     				// TODO - Select Helicopter
     			} else {
@@ -109,7 +110,7 @@ public class GameController : MonoBehaviour {
     	} else if (gameState == GameState.select) {
     		CameraController.instance.showSelectCamera();
     	} else if (gameState == GameState.flightBiplane) {
-    		// TODO - Enable Biplane Camera
+    		CameraController.instance.showBiplaneCamera();
     	} else if (gameState == GameState.flightHelicopter) {
     		// TODO - Enable Helicopter Camera
     	} else {
@@ -120,19 +121,19 @@ public class GameController : MonoBehaviour {
     private void updateShipControls() {
     	if (gameState == GameState.menu
     		|| gameState == GameState.select) {
-    		// TODO - Set Biplane Controls Inactive
+    		BiplaneController.instance.isPlayerControlling = false;
     		// TODO - Set Helicopter Controls Inactive
     		ViperController.instance.isPlayerControlling = false;
     	} else if (gameState == GameState.flightBiplane) {
-    		// TODO - Set Biplane Controls Active
+    		BiplaneController.instance.isPlayerControlling = true;
     		// TODO - Set Helicopter Controls Inactive
     		ViperController.instance.isPlayerControlling = false;
     	} else if (gameState == GameState.flightHelicopter) {
-    		// TODO - Set Biplane Controls Inactive
+    		BiplaneController.instance.isPlayerControlling = false;
     		// TODO - Set Helicopter Controls Active
     		ViperController.instance.isPlayerControlling = false;
     	} else {
-    		// TODO - Set Biplane Controls Inactive
+    		BiplaneController.instance.isPlayerControlling = false;
     		// TODO - Set Helicopter Controls Inactive
     		ViperController.instance.isPlayerControlling = true;
     	}
