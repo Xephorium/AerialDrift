@@ -1,6 +1,7 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - BiplaneController
     - CameraController
     - GameController
     - MenuRotator
@@ -54,32 +55,36 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9672}
+      Script: {instanceID: 9674}
     - Class: 114
-      Script: {instanceID: 9820}
+      Script: {instanceID: 9822}
     - Class: 114
-      Script: {instanceID: 9876}
+      Script: {instanceID: 9878}
     - Class: 114
-      Script: {instanceID: 10228}
+      Script: {instanceID: 9920}
     - Class: 114
-      Script: {instanceID: 10312}
+      Script: {instanceID: 10232}
     - Class: 114
-      Script: {instanceID: 10584}
+      Script: {instanceID: 10316}
     - Class: 114
-      Script: {instanceID: 10644}
+      Script: {instanceID: 10588}
     - Class: 114
-      Script: {instanceID: 10838}
+      Script: {instanceID: 10648}
     - Class: 114
-      Script: {instanceID: 10904}
+      Script: {instanceID: 10842}
     - Class: 114
-      Script: {instanceID: 11008}
+      Script: {instanceID: 10908}
     - Class: 114
-      Script: {instanceID: 11296}
+      Script: {instanceID: 11012}
     - Class: 114
-      Script: {instanceID: 11348}
+      Script: {instanceID: 11300}
+    - Class: 114
+      Script: {instanceID: 11352}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
+      Script: {instanceID: 0}
+    - Class: 134
       Script: {instanceID: 0}
     - Class: 135
       Script: {instanceID: 0}
@@ -182,7 +187,7 @@ ScriptsOnlyBuild:
     className: TestResultRendererCallback
   - hash:
       serializedVersion: 2
-      Hash: 289ae39dc6006be9d4bb0c76f4538094
+      Hash: 6e363a1632284521d36021bf09a5fdb4
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CameraController
@@ -198,6 +203,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: GridLayoutGroup
+  - hash:
+      serializedVersion: 2
+      Hash: 972d6e90373b4f493cf7219c368a796f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BiplaneController
   - hash:
       serializedVersion: 2
       Hash: 8aa3d6ccbcb54ee8db6c1229854adaaa

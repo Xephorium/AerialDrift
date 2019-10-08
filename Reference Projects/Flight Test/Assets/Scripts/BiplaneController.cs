@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BiplaneController : MonoBehaviour
-{
+public class BiplaneController : MonoBehaviour {
+
 
     /*--- Variable Declarations ---*/
 
@@ -13,30 +13,22 @@ public class BiplaneController : MonoBehaviour
     // Public Variables
     public GameObject cameraEmpty;
     public Camera camera;
+    public GameObject trailEmitterLeft;
+    public GameObject trailEmitterRight;
     public bool isPlayerControlling = false;
 
     // Private Constants
     private static float CAMERA_MOVEMENT_FACTOR = .8f;
+    private static float MAX_SPEED = 20f;
+    private static float MAX_GRAVITY = -13f;
+    private static float GRAVITY_DAMPENING = .75f;
 
     // Private Variables
     private Rigidbody myRigidBody;
+    private TrailRenderer trailLeft;
+    private TrailRenderer trailRight;
     private Vector3 initialPosition;
     private Quaternion initialRotation;
-
-    // Boost Constants
-    // private static float DEFAULT_FOV = 70f;
-    // private static float BOOST_FOV = 80f;
-    // private static float boostAnimationTime = .4f;
-
-    // Boost Variables
-    // private float boostTimeStart = 0f;
-    // private float boostTimeEnd = 0f;
-    // private float boostFOVStart = DEFAULT_FOV;
-    // private float boostFOVEnd = DEFAULT_FOV;
-    // private float boostAnimationFactor = 0f;
-    // private bool boostChange = false;
-    // private bool boostAnimating = false;
-    // private bool boost = false;
 
 
     /*--- Lifecycle Methods ---*/
@@ -52,46 +44,41 @@ public class BiplaneController : MonoBehaviour
 
         // Get Components
         myRigidBody = GetComponent<Rigidbody>();
+        trailLeft = trailEmitterLeft.GetComponent<TrailRenderer>();
+        trailRight = trailEmitterRight.GetComponent<TrailRenderer>();
     }
 
     void FixedUpdate() {
         if (isPlayerControlling) {
-
-
-            /*--- Detect Keypresses ---*/
-
-            // if (Input.GetKey(KeyCode.LeftShift) != boost
-            //     && (Input.GetAxis("ControlForwardBack") > 0
-            //         || !Input.GetKey(KeyCode.LeftShift))) {
-            //     boostChange = true;
-            // } else {
-            //     boostChange = false;
-            // }
-            // boost = Input.GetKey(KeyCode.LeftShift);
       
 
-            /*--- Update Ship Translation ---*/
+            /*--- Update Plane Translation ---*/
 
             // Get Movement Inputs Since Update
             float moveForwardBack = Input.GetAxis("ControlForwardBack");
+            if (moveForwardBack < 0) {
+                moveForwardBack *= 0;
+            }
 
             // Create Individual Force Vectors
             Vector3 forceForwardBack = transform.forward * 10 * moveForwardBack;
 
-            // // Apply Boost
-            // if (moveForwardBack > 0 && boost) {
-            //     forceForwardBack *= 2;
-            // }
+            // Calculate Force of Gravity
+            float speedFactor = 1 - (myRigidBody.velocity.magnitude / MAX_SPEED);
+            float gravity = (speedFactor * GRAVITY_DAMPENING) * MAX_GRAVITY;
+            if (gravity < MAX_GRAVITY) {
+                gravity = MAX_GRAVITY;
+            }
+            Vector3 forceGravity = new Vector3(0, gravity, 0);
 
             // Combine Force Vectors
-            Vector3 combinedForce = forceForwardBack;
+            Vector3 combinedForce = forceForwardBack + forceGravity;
 
             // Apply Force to Rigidbody Component
             myRigidBody.AddForce(combinedForce);
-            //myRigidBody.velocity = combinedForce;
 
 
-            /*--- Update Ship Rotation ---*/
+            /*--- Update Plane Rotation ---*/
 
             // Calculate Roll
             float rotateRoll = Input.GetAxis("ControlRoll");
@@ -138,46 +125,21 @@ public class BiplaneController : MonoBehaviour
             );
 
 
-            /*--- Update Boost Variables ---*/
+            /*--- Update Trail Variables ---*/
 
-            // // Set Boost Variables on Change
-            // if (boostChange) {
-            //     boostTimeStart = Time.fixedTime;
-            //     boostTimeEnd = boostTimeStart + boostAnimationTime;
-            //     boostFOVStart = camera.fieldOfView;
-            //     boostAnimating = true;
-            //     if (boost) {
-            //         boostFOVEnd = BOOST_FOV;
-            //     } else {
-            //         boostFOVEnd = DEFAULT_FOV;
-            //     }
-            //     trailLeft.emitting = boost;
-            //     trailRight.emitting = boost;
-            // }
-
-            // // Note FOV Animation Completion
-            // if (Time.fixedTime >= boostTimeEnd) {
-            //     boostAnimating = false;
-            // }
-        }
-    }
-
-    void Update() {
-        if (isPlayerControlling) {
-
+            trailLeft.emitting = true;
+            trailRight.emitting = true;
+            Color trailColor = new Color(1, 1, 1, (1 - (speedFactor * 3f)));
+            trailLeft.startColor = trailColor;
+            trailLeft.endColor = trailColor;
+            trailRight.startColor = trailColor;
+            trailRight.endColor = trailColor;
         
-            /*--- Update FOV ---*/
+        } else {
 
-            // // If FOV Animation Incomplete
-            // if (boostAnimating) {
-                
-            //     // Calculate & Set FOV
-            //     boostAnimationFactor = 1 - Mathf.Abs((boostTimeEnd - Time.fixedTime)/(boostTimeEnd - boostTimeStart));
-            //     float normalizedInput = boostAnimationFactor * (Mathf.PI / 3);
-            //     float fovFactor = .5f * (1 + Mathf.Sin(3 * normalizedInput - Mathf.PI / 2));
-            //     float currentFOV = boostFOVStart + (fovFactor * (boostFOVEnd - boostFOVStart));
-            //     camera.fieldOfView = currentFOV;
-            // }
+            // Apply Default Gravity
+            Vector3 forceGravity = new Vector3(0, MAX_GRAVITY, 0);
+            myRigidBody.AddForce(forceGravity);
         }
     }
 
@@ -186,12 +148,9 @@ public class BiplaneController : MonoBehaviour
 
     public void reset() {
 
-        // // Reset Boost Effects
-        // boost = false;
-        // boostAnimating = false;
-        // camera.fieldOfView = DEFAULT_FOV;
-
         // Reset Position, Rotation, Velocity
+        trailLeft.emitting = false;
+        trailRight.emitting = false;
         transform.position = initialPosition;
         transform.rotation = initialRotation;
         myRigidBody.velocity = new Vector3(0, 0, 0);
