@@ -13,6 +13,10 @@ public class BiplaneController : MonoBehaviour {
     // Public Variables
     public GameObject cameraEmpty;
     public Camera camera;
+    public GameObject finBigTop;
+    public GameObject finBigBottom;
+    public GameObject finSmallTop;
+    public GameObject finSmallBottom;
     public GameObject trailEmitterLeft;
     public GameObject trailEmitterRight;
     public bool isPlayerControlling = false;
@@ -22,6 +26,7 @@ public class BiplaneController : MonoBehaviour {
     private static float MAX_SPEED = 20f;
     private static float MAX_GRAVITY = -13f;
     private static float GRAVITY_DAMPENING = .75f;
+    private static float MAX_FIN_ANGLE = 20f;
 
     // Private Variables
     private Rigidbody myRigidBody;
@@ -125,7 +130,31 @@ public class BiplaneController : MonoBehaviour {
             );
 
 
-            /*--- Update Trail Variables ---*/
+
+            /*--- Update Control Surfaces ---*/
+
+            // Calculate Angles
+            float horizontalFinAngle = MAX_FIN_ANGLE * -mousePercentY * 8;
+            if (horizontalFinAngle > MAX_FIN_ANGLE) {
+                horizontalFinAngle = MAX_FIN_ANGLE;
+            } else if (horizontalFinAngle < -MAX_FIN_ANGLE) {
+                horizontalFinAngle = -MAX_FIN_ANGLE;
+            }
+            float verticalFinAngle = (MAX_FIN_ANGLE / 2) * mousePercentX * 8;
+            if (verticalFinAngle > MAX_FIN_ANGLE) {
+                verticalFinAngle = MAX_FIN_ANGLE;
+            } else if (verticalFinAngle < -MAX_FIN_ANGLE) {
+                verticalFinAngle = -MAX_FIN_ANGLE;
+            }
+
+            // Set Rotations
+            finBigTop.transform.localRotation = Quaternion.Euler(horizontalFinAngle,0,0);
+            finBigBottom.transform.localRotation = Quaternion.Euler(horizontalFinAngle,0,0);
+            finSmallTop.transform.localRotation = Quaternion.Euler(0,verticalFinAngle,0);
+            finSmallBottom.transform.localRotation = Quaternion.Euler(horizontalFinAngle,0,0);
+
+
+            /*--- Update Trails ---*/
 
             trailLeft.emitting = true;
             trailRight.emitting = true;
