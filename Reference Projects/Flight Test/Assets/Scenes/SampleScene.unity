@@ -6163,7 +6163,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 621520995}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.279, y: -0.306, z: 1.731}
+  m_LocalPosition: {x: 2.279, y: -0.306, z: 1.906}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 968573154}
@@ -6208,7 +6208,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 5
+  m_Time: 10
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.35
@@ -11193,7 +11193,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 683315812}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.279, y: -0.306, z: 1.731}
+  m_LocalPosition: {x: -2.279, y: -0.306, z: 1.906}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 968573154}
@@ -11238,7 +11238,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 5
+  m_Time: 10
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.35
@@ -11774,20 +11774,6 @@ MonoBehaviour:
   trailEmitterLeft: {fileID: 683315812}
   trailEmitterRight: {fileID: 621520995}
   isPlayerControlling: 0
-  m_MaxEnginePower: 40
-  m_Lift: 0.002
-  m_ZeroLiftSpeed: 300
-  m_RollEffect: 1
-  m_PitchEffect: 1
-  m_YawEffect: 0.2
-  m_BankedTurnEffect: 0.5
-  m_AerodynamicEffect: 0.02
-  m_AutoTurnPitch: 0.5
-  m_AutoRollLevel: 0.2
-  m_AutoPitchLevel: 0.2
-  m_AirBrakesEffect: 3
-  m_ThrottleChangeSpeed: 0.3
-  m_DragIncreaseFactor: 0.001
 --- !u!64 &748255891
 MeshCollider:
   m_ObjectHideFlags: 0
