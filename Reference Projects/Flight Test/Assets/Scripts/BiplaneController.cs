@@ -17,6 +17,8 @@ public class BiplaneController : MonoBehaviour {
     public GameObject finBigBottom;
     public GameObject finSmallTop;
     public GameObject finSmallBottom;
+    public GameObject propeller;
+    public GameObject propellerSpinner;
     public GameObject trailEmitterLeft;
     public GameObject trailEmitterRight;
     public bool isPlayerControlling = false;
@@ -26,7 +28,7 @@ public class BiplaneController : MonoBehaviour {
     private static float TRAIL_SPEED = 22f;
     private static float TRAIL_FADE = 5f;
     private static float MAX_GRAVITY = -13f;
-    private static float MAX_FIN_ANGLE = 4f;
+    private static float MAX_FIN_ANGLE = 20f;
 
     // Private Variables
     private Rigidbody bpRigidbody;
@@ -126,16 +128,43 @@ public class BiplaneController : MonoBehaviour {
             /*--- Update Control Surfaces ---*/
 
             // Calculate Angles
-            float horizontalFinAngle = MAX_FIN_ANGLE * -mousePercentY * 11;
-            Mathf.Clamp(horizontalFinAngle, -MAX_FIN_ANGLE, MAX_FIN_ANGLE);
-            float verticalFinAngle = (MAX_FIN_ANGLE / 3) * mousePercentX * 11;
-            Mathf.Clamp(verticalFinAngle, -MAX_FIN_ANGLE, MAX_FIN_ANGLE);
+            float horizontalFactor = Mathf.Clamp(-mousePercentY * 4f, -1, 1);
+            float horizontalFinAngle = MAX_FIN_ANGLE * horizontalFactor;
+            float verticalFactor = Mathf.Clamp(mousePercentX * 2f, -1, 1);
+            float verticalFinAngle = MAX_FIN_ANGLE * verticalFactor;
 
             // Set Rotations
             finBigTop.transform.localRotation = Quaternion.Euler(horizontalFinAngle,0,0);
             finBigBottom.transform.localRotation = Quaternion.Euler(horizontalFinAngle,0,0);
             finSmallTop.transform.localRotation = Quaternion.Euler(0,verticalFinAngle,0);
             finSmallBottom.transform.localRotation = Quaternion.Euler(horizontalFinAngle,0,0);
+
+            // Update Propeller Speed
+            propeller.transform.Rotate(new Vector3(0, 0, currentThrottle * 360 * 10) * Time.deltaTime);
+
+            // Calculate Propeller Visibility
+            float visibility = 0f;
+            if (currentThrottle > .5) {
+            	visibility = (currentThrottle - .5f) * 2f;
+            }
+
+            // Update Propeller Visibility
+            var spinnerRenderer = propeller.GetComponent<Renderer>();
+            spinnerRenderer.material.SetColor("_Color", new Color(
+            	spinnerRenderer.material.color.r,
+            	spinnerRenderer.material.color.g,
+            	spinnerRenderer.material.color.b,
+            	1 - visibility
+            ));
+
+            // Update Propeller Spinner Visibility
+            spinnerRenderer = propellerSpinner.GetComponent<Renderer>();
+            spinnerRenderer.material.SetColor("_Color", new Color(
+            	spinnerRenderer.material.color.r,
+            	spinnerRenderer.material.color.g,
+            	spinnerRenderer.material.color.b,
+            	visibility  * .3f
+            ));
 
 
             /*--- Update Trails ---*/
@@ -177,6 +206,24 @@ public class BiplaneController : MonoBehaviour {
         transform.position = initialPosition;
         transform.rotation = initialRotation;
         bpRigidbody.velocity = new Vector3(0, 0, 0);
+
+        // Reset Propellers
+        var spinnerRenderer = propeller.GetComponent<Renderer>();
+        spinnerRenderer.material.SetColor("_Color", new Color(
+        	spinnerRenderer.material.color.r,
+        	spinnerRenderer.material.color.g,
+        	spinnerRenderer.material.color.b,
+        	1f
+        ));
+
+        // Update Propeller Spinner Visibility
+        spinnerRenderer = propellerSpinner.GetComponent<Renderer>();
+        spinnerRenderer.material.SetColor("_Color", new Color(
+        	spinnerRenderer.material.color.r,
+        	spinnerRenderer.material.color.g,
+        	spinnerRenderer.material.color.b,
+        	0f
+        ));
     }
 
 
