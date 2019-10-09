@@ -560,5 +560,5 @@ ScriptsOnlyBuild:
   platform: 5
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/Users/Xephorium/Home/Projects/Game Dev/Unity Projects/UMSL Final/Reference
+  playerPath: C:/Users/Xephorium/Documents/Home/Projects/Games/Unity/UMSL Final/Reference
     Projects/Flight Test/Build/Flight Test.exe
