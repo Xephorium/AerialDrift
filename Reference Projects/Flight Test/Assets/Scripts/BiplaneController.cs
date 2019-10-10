@@ -25,10 +25,12 @@ public class BiplaneController : MonoBehaviour {
 
     // Private Constants
     private static float CAMERA_MOVEMENT_FACTOR = .8f;
+    private static float MAX_SPEED = 23f;
     private static float TRAIL_SPEED = 22f;
     private static float TRAIL_FADE = 5f;
     private static float MAX_GRAVITY = -13f;
     private static float MAX_FIN_ANGLE = 20f;
+    private static float MAX_CAMERA_CHANGE = .05f;
 
     // Private Variables
     private Rigidbody bpRigidbody;
@@ -36,6 +38,7 @@ public class BiplaneController : MonoBehaviour {
     private TrailRenderer trailRight;
     private Vector3 initialPosition;
     private Quaternion initialRotation;
+    private float cameraOffset = 0f;
 
     // Flight Simulation Constants
     private static float MAX_ENGINE_POWER = 33f;       // The maximum output of the engine.
@@ -105,33 +108,42 @@ public class BiplaneController : MonoBehaviour {
 
             /*--- Update Camera ---*/
 
+            // Calculate Speed
+            float speedFactor = Mathf.Clamp01(bpRigidbody.velocity.magnitude / MAX_SPEED);
+            if (-speedFactor < cameraOffset) {
+                cameraOffset = Mathf.Clamp(cameraOffset - MAX_CAMERA_CHANGE, -speedFactor, 0);
+            } else if (-speedFactor > cameraOffset) {
+                cameraOffset = Mathf.Clamp(cameraOffset + MAX_CAMERA_CHANGE, -1, -speedFactor);
+            }
+
             // Calculate Camera Shift
-            float cameraShiftX = -mousePercentY * 3;
-            float cameraShiftY = mousePercentX * 3;
+            float cameraShiftX = -mousePercentY * 3f * speedFactor;
+            float cameraShiftY = mousePercentX * 3f * speedFactor;
             float cameraShiftZ = 0;
 
             // Apply Camera Rotation
-            cameraEmpty.transform.eulerAngles = new Vector3(
-                transform.eulerAngles.x + cameraShiftX,
-                transform.eulerAngles.y + cameraShiftY,
-                transform.eulerAngles.z + cameraShiftZ
+            cameraEmpty.transform.localRotation = Quaternion.Euler(
+                cameraShiftX,
+                cameraShiftY,
+                cameraShiftZ
             );
 
             // Apply Camera Movement
             cameraEmpty.transform.localPosition = new Vector3(
-                -mousePercentX * (CAMERA_MOVEMENT_FACTOR / 2),
-                -mousePercentY * CAMERA_MOVEMENT_FACTOR,
-                0
+                -mousePercentX * (CAMERA_MOVEMENT_FACTOR / 2) * speedFactor,
+                -mousePercentY * CAMERA_MOVEMENT_FACTOR * speedFactor,
+                cameraOffset
             );
 
 
             /*--- Update Control Surfaces ---*/
 
             // Calculate Angles
+            float controlSurfaceFactor = (speedFactor * .5f) + .5f;
             float horizontalFactor = Mathf.Clamp(-mousePercentY * 4f, -1, 1);
-            float horizontalFinAngle = MAX_FIN_ANGLE * horizontalFactor;
+            float horizontalFinAngle = MAX_FIN_ANGLE * horizontalFactor * controlSurfaceFactor;
             float verticalFactor = Mathf.Clamp(mousePercentX * 2f, -1, 1);
-            float verticalFinAngle = MAX_FIN_ANGLE * verticalFactor;
+            float verticalFinAngle = MAX_FIN_ANGLE * verticalFactor * controlSurfaceFactor;
 
             // Set Rotations
             finBigTop.transform.localRotation = Quaternion.Euler(horizontalFinAngle,0,0);
@@ -183,8 +195,6 @@ public class BiplaneController : MonoBehaviour {
             trailLeft.endColor = trailColor;
             trailRight.startColor = trailColor;
             trailRight.endColor = trailColor;
-
-            print("Temp - " + bpRigidbody.velocity.magnitude);
         
         } else {
 
