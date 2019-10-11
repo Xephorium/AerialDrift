@@ -61,7 +61,7 @@ public class GameController : MonoBehaviour {
     		}
 
     		// Aircraft Click
-    		if (Input.GetMouseButtonUp(0)) {
+    		if (Input.GetMouseButtonDown(0)) {
     			int mousePosition = (int) (Input.mousePosition[0] / (Screen.width / 3));
     			
     			if (mousePosition == 0) {
@@ -137,5 +137,13 @@ public class GameController : MonoBehaviour {
     		// TODO - Set Helicopter Controls Inactive
     		ViperController.instance.isPlayerControlling = true;
     	}
+    }
+
+    private void toggleSimulationPause() {
+        if (Time.timeScale == 0f) {
+            Time.timeScale = 1f;
+        } else {
+            Time.timeScale = 0f;
+        }
     }
 }
