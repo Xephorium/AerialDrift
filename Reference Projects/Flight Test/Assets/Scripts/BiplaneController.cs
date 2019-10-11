@@ -30,7 +30,8 @@ public class BiplaneController : MonoBehaviour {
     private static float TRAIL_FADE = 5f;
     private static float MAX_GRAVITY = -13f;
     private static float MAX_FIN_ANGLE = 20f;
-    private static float MAX_CAMERA_CHANGE = .01f;
+    private static float MAX_CAMERA_CHANGE_POS = .01f;
+    private static float MAX_CAMERA_CHANGE_ROT = .01f;
 
     // Private Variables
     private Rigidbody bpRigidbody;
@@ -38,9 +39,12 @@ public class BiplaneController : MonoBehaviour {
     private TrailRenderer trailRight;
     private Vector3 initialPosition;
     private Quaternion initialRotation;
-    private float cameraOffsetX = 0f;
-    private float cameraOffsetY = 0f;
-    private float cameraOffsetZ = 0f;
+    private float cameraPositionX = 0f;
+    private float cameraPositionY = 0f;
+    private float cameraPositionZ = 0f;
+    private float cameraRotationX = 0f;
+    private float cameraRotationY = 0f;
+    private float cameraRotationZ = 0f;
 
     // Flight Simulation Constants
     private static float MAX_ENGINE_POWER = 33f;       // The maximum output of the engine.
@@ -115,39 +119,55 @@ public class BiplaneController : MonoBehaviour {
 
             // Calculate Camera X Position
             float targetPositionX = -mousePercentX * (CAMERA_MOVEMENT_FACTOR / 2) * speedFactor;
-            if (targetPositionX < cameraOffsetX) {
-                cameraOffsetX = Mathf.Clamp(cameraOffsetX - MAX_CAMERA_CHANGE, targetPositionX, 5);
-            } else if (targetPositionX > cameraOffsetX) {
-                cameraOffsetX = Mathf.Clamp(cameraOffsetX + MAX_CAMERA_CHANGE, -5, targetPositionX);
+            if (targetPositionX < cameraPositionX) {
+                cameraPositionX = Mathf.Clamp(cameraPositionX - MAX_CAMERA_CHANGE_POS, targetPositionX, 5);
+            } else if (targetPositionX > cameraPositionX) {
+                cameraPositionX = Mathf.Clamp(cameraPositionX + MAX_CAMERA_CHANGE_POS, -5, targetPositionX);
             }
 
             // Calculate Camera Y Position
             float targetPositionY = -mousePercentY * CAMERA_MOVEMENT_FACTOR * speedFactor;
-            if (targetPositionY < cameraOffsetY) {
-                cameraOffsetY = Mathf.Clamp(cameraOffsetY - MAX_CAMERA_CHANGE, targetPositionY, 5);
-            } else if (targetPositionY > cameraOffsetY) {
-                cameraOffsetY = Mathf.Clamp(cameraOffsetY + MAX_CAMERA_CHANGE, -5, targetPositionY);
+            if (targetPositionY < cameraPositionY) {
+                cameraPositionY = Mathf.Clamp(cameraPositionY - MAX_CAMERA_CHANGE_POS, targetPositionY, 5);
+            } else if (targetPositionY > cameraPositionY) {
+                cameraPositionY = Mathf.Clamp(cameraPositionY + MAX_CAMERA_CHANGE_POS, -5, targetPositionY);
             }
 
             // Calculate Camera Z Position
-            if (-speedFactor < cameraOffsetZ) {
-                cameraOffsetZ = Mathf.Clamp(cameraOffsetZ - MAX_CAMERA_CHANGE, -speedFactor, 0);
-            } else if (-speedFactor > cameraOffsetZ) {
-                cameraOffsetZ = Mathf.Clamp(cameraOffsetZ + MAX_CAMERA_CHANGE, -1, -speedFactor);
+            if (-speedFactor < cameraPositionZ) {
+                cameraPositionZ = Mathf.Clamp(cameraPositionZ - MAX_CAMERA_CHANGE_POS, -speedFactor, 0);
+            } else if (-speedFactor > cameraPositionZ) {
+                cameraPositionZ = Mathf.Clamp(cameraPositionZ + MAX_CAMERA_CHANGE_POS, -1, -speedFactor);
+            }
+
+            // Apply Camera Movement
+            cameraEmpty.transform.localPosition = new Vector3(
+                cameraPositionX,
+                cameraPositionY,
+                cameraPositionZ
+            );
+
+            // Calculate Camera X Rotation
+            float targetRotationX = -mousePercentY * 3f * speedFactor;
+            if (targetRotationX < cameraRotationX) {
+                cameraRotationX = Mathf.Clamp(cameraRotationX - MAX_CAMERA_CHANGE_ROT, targetRotationX, 180);
+            } else if (targetRotationX > cameraRotationX) {
+                cameraRotationX = Mathf.Clamp(cameraRotationX + MAX_CAMERA_CHANGE_ROT, -180, targetRotationX);
+            }
+
+            // Calculate Camera Y Rotation
+            float targetRotationY = mousePercentX * 3f * speedFactor;
+            if (targetRotationY < cameraRotationY) {
+                cameraRotationY = Mathf.Clamp(cameraRotationY - MAX_CAMERA_CHANGE_ROT, targetRotationY, 180);
+            } else if (targetRotationY > cameraRotationY) {
+                cameraRotationY = Mathf.Clamp(cameraRotationY + MAX_CAMERA_CHANGE_ROT, -180, targetRotationY);
             }
 
             // Apply Camera Rotation
             cameraEmpty.transform.localRotation = Quaternion.Euler(
-                -mousePercentY * 3f * speedFactor,
-                mousePercentX * 3f * speedFactor,
-                0
-            );
-
-            // Apply Camera Movement
-            cameraEmpty.transform.localPosition = new Vector3(
-                cameraOffsetX,
-                cameraOffsetY,
-                cameraOffsetZ
+                cameraRotationX,
+                cameraRotationY,
+                cameraRotationZ
             );
 
 
