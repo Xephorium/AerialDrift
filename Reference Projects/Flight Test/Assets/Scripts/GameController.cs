@@ -21,6 +21,11 @@ public class GameController : MonoBehaviour {
 
 	// Private Variables
 	private bool gameStateChanged;
+    private bool initialTransitionInitiated = false;
+    private bool fadeInQueued = false;
+    private bool animatingTransition = true;
+    private float time = 0f;
+    private float transitionEnd = 0f;
 
 
 	/*--- Lifecycle Methods ---*/
@@ -31,53 +36,95 @@ public class GameController : MonoBehaviour {
 
     void Update() {
 
-    	// Handle Flight Keypresses (First Condition for Optimization)
+        // Update Realtime Variables
+        time += Time.deltaTime;
+        animatingTransition = time < transitionEnd;
+
+    	// Flight Logic (First Condition for Optimization)
     	if (gameState == GameState.flightBiplane
     		|| gameState == GameState.flightHelicopter
     		|| gameState == GameState.flightViper) {
 
-    		// Back Click
-    		if (Input.GetKeyDown("escape")) {
-    			updateGameState(GameState.select);
-    			BiplaneController.instance.reset();
-    			// TODO - Reset Helicopter
-    			ViperController.instance.reset();
-    		}
+            // Handle Queued Transition
+            if (!animatingTransition && fadeInQueued) {
+                BiplaneController.instance.reset();
+                // TODO - Reset Helicopter
+                ViperController.instance.reset();
+                handleQueuedTransition();
+            }
 
-    	// Handle Menu Keypresses
+    		// Handle Back Click
+            if (!animatingTransition) {
+        		if (Input.GetKeyDown("escape")) {
+        			updateGameState(GameState.select);
+                    beginTransition();
+        		}
+            }
+
+    	// Menu Logic
     	} else if (gameState == GameState.menu) {
-    		if (Input.GetKeyDown("escape")) {
-    			Application.Quit();
-    		} else if (Input.anyKey && !Input.GetKey("escape")) {
-    			updateGameState(GameState.select);
-    		}
 
-    	// Handle Select Keypress
+            // Handle Startup Animation
+            if (!initialTransitionInitiated) {
+                UIController.instance.fadeFromGrey();
+                transitionEnd = Time.deltaTime + (UIController.instance.fadeTime * 2);
+                initialTransitionInitiated = true;
+            }
+
+            // Handle Queued Transition
+            if (!animatingTransition && fadeInQueued) {
+                handleQueuedTransition();
+            }
+
+            // Handle Keypresses
+            if (!animatingTransition) {
+                if (Input.GetKeyDown("escape")) {
+                    Application.Quit();
+                } else if (Input.anyKey && !Input.GetKey("escape")) {
+                    updateGameState(GameState.select);
+                    beginTransition();
+                }
+            }
+
+    	// Select Logic
     	} else if (gameState == GameState.select) {
 
-    		// Back Click
-    		if (Input.GetKeyDown("escape")) {
-    			updateGameState(GameState.menu);
-    		}
+            // Handle Queued Transition
+            if (!animatingTransition && fadeInQueued) {
+                BiplaneController.instance.reset();
+                // TODO - Reset Helicopter
+                ViperController.instance.reset();
+                handleQueuedTransition();
+            }
 
-    		// Aircraft Click
-    		if (Input.GetMouseButtonDown(0)) {
-    			int mousePosition = (int) (Input.mousePosition[0] / (Screen.width / 3));
-    			
-    			if (mousePosition == 0) {
-    				BiplaneController.instance.reset();
-                    updateGameState(GameState.flightBiplane);
-    			} else if (mousePosition == 1) {
-    				// TODO - Select Helicopter
-    			} else {
-    				ViperController.instance.reset();
-    				updateGameState(GameState.flightViper);
-    			}
-    		}
+    		// Handle Back Click
+            if (!animatingTransition) {
+        		if (Input.GetKeyDown("escape")) {
+        			updateGameState(GameState.menu);
+                    beginTransition();
+        		}
+            }
+
+    		// Handle Aircraft Click
+            if (!animatingTransition) {
+        		if (Input.GetMouseButtonDown(0)) {
+        			int mousePosition = (int) (Input.mousePosition[0] / (Screen.width / 3));
+        			
+        			if (mousePosition == 0) {
+                        updateGameState(GameState.flightBiplane);
+                        beginTransition();
+        			} else if (mousePosition == 1) {
+        				// TODO - Select Helicopter
+        			} else {
+        				updateGameState(GameState.flightViper);
+                        beginTransition();
+        			}
+        		}
+            }
     	}
 
     	// Handle Game State Change
-    	if (gameStateChanged) {
+    	if (!initialTransitionInitiated || (!animatingTransition && gameStateChanged)) {
         	updateUI();
         	updateCamera();
         	updateShipControls();
@@ -137,6 +184,19 @@ public class GameController : MonoBehaviour {
     		// TODO - Set Helicopter Controls Inactive
     		ViperController.instance.isPlayerControlling = true;
     	}
+    }
+
+    private void beginTransition() {
+        UIController.instance.fadeToWhite();
+        transitionEnd = time + UIController.instance.fadeTime;
+        animatingTransition = true;
+        fadeInQueued = true;
+    }
+
+    private void handleQueuedTransition() {
+        UIController.instance.fadeFromWhite();
+        transitionEnd = time + UIController.instance.fadeTime;
+        fadeInQueued = false;
     }
 
     private void toggleSimulationPause() {

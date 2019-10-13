@@ -40033,6 +40033,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4dbd38b31d1b974c9d7e835d562b5b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeTime: 0.15
+  textureWhite: {fileID: 2800000, guid: 4f2bdf822c24bc74794f6b300b24c007, type: 3}
+  textureGrey: {fileID: 2800000, guid: c8f78bfc9e5cb394a8f8047ac42c1ac0, type: 3}
   menuCanvasGroup: {fileID: 1723334039}
   selectCanvasGroup: {fileID: 212426607}
   flightCanvasGroup: {fileID: 606350707}
