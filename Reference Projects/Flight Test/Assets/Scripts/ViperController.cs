@@ -25,17 +25,28 @@ public class ViperController : MonoBehaviour
 
     // Private Constants
     private static float CAMERA_MOVEMENT_FACTOR = .8f;
+    private static float CAMERA_DEPTH_FACTOR = .6f;
+    private static float CAMERA_VERTICAL_BOOST_OFFSET = .2f;
+    private static float MAX_SPEED = 20f;
+    private static float MAX_CAMERA_CHANGE_POS = .01f;
+    private static float MAX_CAMERA_CHANGE_ROT = .01f;
 
     // Private Variables
-    private Rigidbody myRigidBody;
+    private Rigidbody vpRigidbody;
     private TrailRenderer trailLeft;
     private TrailRenderer trailRight;
     private Vector3 initialPosition;
     private Quaternion initialRotation;
+    private float cameraPositionX = 0f;
+    private float cameraPositionY = 0f;
+    private float cameraPositionZ = 0f;
+    private float cameraRotationX = 0f;
+    private float cameraRotationY = 0f;
+    private float cameraRotationZ = 0f;
 
     // Boost Constants
     private static float DEFAULT_FOV = 70f;
-    private static float BOOST_FOV = 80f;
+    private static float BOOST_FOV = 75f;
     private static float boostAnimationTime = .4f;
 
     // Boost Variables
@@ -76,7 +87,7 @@ public class ViperController : MonoBehaviour
         initialRotation = transform.rotation;
 
         // Get Components
-        myRigidBody = GetComponent<Rigidbody>();
+        vpRigidbody = GetComponent<Rigidbody>();
         trailLeft = trailEmitterLeft.GetComponent<TrailRenderer>();
         trailRight = trailEmitterRight.GetComponent<TrailRenderer>();
 
@@ -130,8 +141,8 @@ public class ViperController : MonoBehaviour
             Vector3 combinedForce = forceForwardBack + forceUpDown;
 
             // Apply Force to Rigidbody Component
-            myRigidBody.AddForce(combinedForce);
-            //myRigidBody.velocity = combinedForce;
+            vpRigidbody.AddForce(combinedForce);
+            //vpRigidbody.velocity = combinedForce;
 
 
             /*--- Update Ship Rotation ---*/
@@ -161,23 +172,61 @@ public class ViperController : MonoBehaviour
 
             /*--- Update Camera ---*/
 
-            // Calculate Camera Shift
-            float cameraShiftX = -mousePercentY * 3;
-            float cameraShiftY = mousePercentX * 3;
-            float cameraShiftZ = 0;
+            // Calculate Speed
+            float speedFactor = Mathf.Clamp01(vpRigidbody.velocity.magnitude / MAX_SPEED);
 
-            // Apply Camera Rotation
-            cameraEmpty.transform.eulerAngles = new Vector3(
-                transform.eulerAngles.x + cameraShiftX,
-                transform.eulerAngles.y + cameraShiftY,
-                transform.eulerAngles.z + cameraShiftZ
-            );
+            // Calculate Camera X Position
+            float targetPositionX = -mousePercentX * (CAMERA_MOVEMENT_FACTOR / 2) * speedFactor;
+            if (targetPositionX < cameraPositionX) {
+                cameraPositionX = Mathf.Clamp(cameraPositionX - MAX_CAMERA_CHANGE_POS, targetPositionX, 5);
+            } else if (targetPositionX > cameraPositionX) {
+                cameraPositionX = Mathf.Clamp(cameraPositionX + MAX_CAMERA_CHANGE_POS, -5, targetPositionX);
+            }
+
+            // Calculate Camera Y Position
+            float targetPositionY = -mousePercentY * CAMERA_MOVEMENT_FACTOR * speedFactor;
+            if (targetPositionY < cameraPositionY) {
+                cameraPositionY = Mathf.Clamp(cameraPositionY - MAX_CAMERA_CHANGE_POS, targetPositionY, 5);
+            } else if (targetPositionY > cameraPositionY) {
+                cameraPositionY = Mathf.Clamp(cameraPositionY + MAX_CAMERA_CHANGE_POS, -5, targetPositionY);
+            }
+
+            // Calculate Camera Z Position
+            float targetPositionZ = -(speedFactor * CAMERA_DEPTH_FACTOR);
+            if (targetPositionZ < cameraPositionZ) {
+                cameraPositionZ = Mathf.Clamp(cameraPositionZ - MAX_CAMERA_CHANGE_POS, targetPositionZ, 0);
+            } else if (targetPositionZ > cameraPositionZ) {
+                cameraPositionZ = Mathf.Clamp(cameraPositionZ + MAX_CAMERA_CHANGE_POS, -1, targetPositionZ);
+            }
 
             // Apply Camera Movement
             cameraEmpty.transform.localPosition = new Vector3(
-                -mousePercentX * (CAMERA_MOVEMENT_FACTOR / 2),
-                -mousePercentY * CAMERA_MOVEMENT_FACTOR,
-                0
+                cameraPositionX,
+                cameraPositionY,
+                cameraPositionZ
+            );
+
+            // Calculate Camera X Rotation
+            float targetRotationX = -mousePercentY * 1.5f * speedFactor;
+            if (targetRotationX < cameraRotationX) {
+                cameraRotationX = Mathf.Clamp(cameraRotationX - MAX_CAMERA_CHANGE_ROT, targetRotationX, 180);
+            } else if (targetRotationX > cameraRotationX) {
+                cameraRotationX = Mathf.Clamp(cameraRotationX + MAX_CAMERA_CHANGE_ROT, -180, targetRotationX);
+            }
+
+            // Calculate Camera Y Rotation
+            float targetRotationY = mousePercentX * 3f * speedFactor;
+            if (targetRotationY < cameraRotationY) {
+                cameraRotationY = Mathf.Clamp(cameraRotationY - MAX_CAMERA_CHANGE_ROT, targetRotationY, 180);
+            } else if (targetRotationY > cameraRotationY) {
+                cameraRotationY = Mathf.Clamp(cameraRotationY + MAX_CAMERA_CHANGE_ROT, -180, targetRotationY);
+            }
+
+            // Apply Camera Rotation
+            cameraEmpty.transform.localRotation = Quaternion.Euler(
+                cameraRotationX,
+                cameraRotationY,
+                cameraRotationZ
             );
 
 
@@ -207,7 +256,7 @@ public class ViperController : MonoBehaviour
 
             // Apply Default Gravity
             Vector3 forceGravity = new Vector3(0, -9.81f, 0);
-            myRigidBody.AddForce(forceGravity);
+            vpRigidbody.AddForce(forceGravity);
         }
     }
 
@@ -215,9 +264,9 @@ public class ViperController : MonoBehaviour
         if (isPlayerControlling) {
 
         
-            /*--- Update FOV ---*/
+            /*--- Update Camera ---*/
 
-            // If FOV Animation Incomplete
+            // Update FOV
             if (boostAnimating) {
                 
                 // Calculate & Set FOV
@@ -226,6 +275,7 @@ public class ViperController : MonoBehaviour
                 float fovFactor = .5f * (1 + Mathf.Sin(3 * normalizedInput - Mathf.PI / 2));
                 float currentFOV = boostFOVStart + (fovFactor * (boostFOVEnd - boostFOVStart));
                 camera.fieldOfView = currentFOV;
+
             }
 
 
@@ -264,6 +314,6 @@ public class ViperController : MonoBehaviour
         // Reset Position, Rotation, Velocity
         transform.position = initialPosition;
         transform.rotation = initialRotation;
-        myRigidBody.velocity = new Vector3(0, 0, 0);
+        vpRigidbody.velocity = new Vector3(0, 0, 0);
     }
 }
