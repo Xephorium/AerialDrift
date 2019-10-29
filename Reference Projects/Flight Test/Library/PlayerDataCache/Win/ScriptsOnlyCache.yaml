@@ -4,6 +4,7 @@ ScriptsOnlyBuild:
     - BiplaneController
     - CameraController
     - GameController
+    - HelicopterController
     - MenuRotator
     - UIController
     - ViperController
@@ -80,6 +81,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 11300}
     - Class: 114
       Script: {instanceID: 11352}
+    - Class: 114
+      Script: {instanceID: 11358}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -187,7 +190,7 @@ ScriptsOnlyBuild:
     className: TestResultRendererCallback
   - hash:
       serializedVersion: 2
-      Hash: 6e363a1632284521d36021bf09a5fdb4
+      Hash: 4b146f665c5d1c410272637ab6e2c3ff
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CameraController
@@ -529,6 +532,12 @@ ScriptsOnlyBuild:
     className: StandaloneInputModule
   - hash:
       serializedVersion: 2
+      Hash: eb57725582729afdefd0ffab54f27448
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: HelicopterController
+  - hash:
+      serializedVersion: 2
       Hash: aa88ae22474df55295327e4ee99e5a24
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -560,5 +569,5 @@ ScriptsOnlyBuild:
   platform: 5
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/Users/Xephorium/Home/Projects/Game Dev/Unity Projects/UMSL Final/Reference
+  playerPath: C:/Users/Xephorium/Documents/Home/Projects/Games/Unity/UMSL Final/Reference
     Projects/Flight Test/Build/Flight Test.exe

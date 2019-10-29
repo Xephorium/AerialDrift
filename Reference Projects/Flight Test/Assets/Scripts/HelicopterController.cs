@@ -61,13 +61,15 @@ public class HelicopterController : MonoBehaviour
             // Get Movement Inputs Since Update
             float moveForwardBack = Input.GetAxis("ControlForwardBack");
             float moveUpDown = Input.GetAxis("ControlUpDown");
+            float moveRightLeft = Input.GetAxis("ControlRoll");
 
             // Create Individual Force Vectors
             Vector3 forceForwardBack = transform.forward * 10 * moveForwardBack;
-            Vector3 forceUpDown = transform.up * 10 * moveUpDown;
+            Vector3 forceUpDown = transform.up * 5 * moveUpDown;
+            Vector3 forceRightLeft = transform.right * 10 * moveRightLeft;
 
             // Combine Force Vectors
-            Vector3 combinedForce = forceForwardBack + forceUpDown;
+            Vector3 combinedForce = forceForwardBack + forceUpDown + forceRightLeft;
 
             // Apply Force to Rigidbody Component
             hcRigidbody.AddForce(combinedForce);
@@ -76,9 +78,6 @@ public class HelicopterController : MonoBehaviour
 
             /*--- Update Ship Rotation ---*/
 
-            // Calculate Roll
-            float rotateRoll = Input.GetAxis("ControlRoll");
-
             // Calculate Pitch & Yaw
             float mousePercentXRaw = (Screen.width/2 - (Input.mousePosition[0] + 20)) / (Screen.height * .75f);
             float mousePercentYRaw = (Screen.height/2 - (Input.mousePosition[1] - 20)) / (Screen.height * .75f);
@@ -86,9 +85,9 @@ public class HelicopterController : MonoBehaviour
             float mousePercentY = Mathf.Sign(mousePercentYRaw) * Mathf.Pow(mousePercentYRaw, 2);
 
             // Apply Transformations
-            float shipPitch = mousePercentY * 5;
+            float shipPitch = 0; // mousePercentY * 5;
             float shipYaw = -mousePercentX * 5;
-            float shipRoll = -rotateRoll;
+            float shipRoll = 0;
 
             // Apply Rotation
             transform.Rotate(
