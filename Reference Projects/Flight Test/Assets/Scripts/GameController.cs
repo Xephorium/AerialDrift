@@ -48,7 +48,7 @@ public class GameController : MonoBehaviour {
             // Handle Queued Transition
             if (!animatingTransition && fadeInQueued) {
                 BiplaneController.instance.reset();
-                // TODO - Reset Helicopter
+                HelicopterController.instance.reset();
                 ViperController.instance.reset();
                 handleQueuedTransition();
             }
@@ -92,7 +92,7 @@ public class GameController : MonoBehaviour {
             // Handle Queued Transition
             if (!animatingTransition && fadeInQueued) {
                 BiplaneController.instance.reset();
-                // TODO - Reset Helicopter
+                HelicopterController.instance.reset();
                 ViperController.instance.reset();
                 handleQueuedTransition();
             }
@@ -114,7 +114,8 @@ public class GameController : MonoBehaviour {
                         updateGameState(GameState.flightBiplane);
                         beginTransition();
         			} else if (mousePosition == 1) {
-        				// TODO - Select Helicopter
+        				updateGameState(GameState.flightHelicopter);
+                        beginTransition();
         			} else {
         				updateGameState(GameState.flightViper);
                         beginTransition();
@@ -153,15 +154,15 @@ public class GameController : MonoBehaviour {
 
     private void updateCamera() {
     	if (gameState == GameState.menu) {
-    		CameraController.instance.showMenuCamera();
+    	    CameraController.instance.showMenuCamera();
     	} else if (gameState == GameState.select) {
-    		CameraController.instance.showSelectCamera();
+    	    CameraController.instance.showSelectCamera();
     	} else if (gameState == GameState.flightBiplane) {
-    		CameraController.instance.showBiplaneCamera();
+    	    CameraController.instance.showBiplaneCamera();
     	} else if (gameState == GameState.flightHelicopter) {
-    		// TODO - Enable Helicopter Camera
+    	    CameraController.instance.showHelicopterCamera();
     	} else {
-    		CameraController.instance.showViperCamera();
+    	    CameraController.instance.showViperCamera();
     	}
     }
 
@@ -169,19 +170,19 @@ public class GameController : MonoBehaviour {
     	if (gameState == GameState.menu
     		|| gameState == GameState.select) {
     		BiplaneController.instance.isPlayerControlling = false;
-    		// TODO - Set Helicopter Controls Inactive
+    		HelicopterController.instance.isPlayerControlling = false;
     		ViperController.instance.isPlayerControlling = false;
     	} else if (gameState == GameState.flightBiplane) {
     		BiplaneController.instance.isPlayerControlling = true;
-    		// TODO - Set Helicopter Controls Inactive
+    		HelicopterController.instance.isPlayerControlling = false;
     		ViperController.instance.isPlayerControlling = false;
     	} else if (gameState == GameState.flightHelicopter) {
     		BiplaneController.instance.isPlayerControlling = false;
-    		// TODO - Set Helicopter Controls Active
+    		HelicopterController.instance.isPlayerControlling = true;
     		ViperController.instance.isPlayerControlling = false;
     	} else {
     		BiplaneController.instance.isPlayerControlling = false;
-    		// TODO - Set Helicopter Controls Inactive
+    		HelicopterController.instance.isPlayerControlling = false;
     		ViperController.instance.isPlayerControlling = true;
     	}
     }

@@ -14,6 +14,7 @@ public class CameraController : MonoBehaviour {
 	public Camera menuCamera;
 	public Camera selectCamera;
     public Camera biplaneCamera;
+    public Camera helicopterCamera;
 	public Camera viperCamera;
 
 
@@ -30,6 +31,7 @@ public class CameraController : MonoBehaviour {
     	menuCamera.enabled = true;
     	selectCamera.enabled = false;
         biplaneCamera.enabled = false;
+        helicopterCamera.enabled = false;
     	viperCamera.enabled = false;
     }
 
@@ -37,6 +39,7 @@ public class CameraController : MonoBehaviour {
     	menuCamera.enabled = false;
     	selectCamera.enabled = true;
         biplaneCamera.enabled = false;
+        helicopterCamera.enabled = false;
     	viperCamera.enabled = false;
     }
 
@@ -44,6 +47,15 @@ public class CameraController : MonoBehaviour {
         menuCamera.enabled = false;
         selectCamera.enabled = false;
         biplaneCamera.enabled = true;
+        helicopterCamera.enabled = false;
+        viperCamera.enabled = false;
+    }
+
+    public void showHelicopterCamera() {
+        menuCamera.enabled = false;
+        selectCamera.enabled = false;
+        biplaneCamera.enabled = false;
+        helicopterCamera.enabled = true;
         viperCamera.enabled = false;
     }
 
@@ -51,6 +63,7 @@ public class CameraController : MonoBehaviour {
     	menuCamera.enabled = false;
     	selectCamera.enabled = false;
         biplaneCamera.enabled = false;
+        helicopterCamera.enabled = false;
     	viperCamera.enabled = true;
     }
 }
