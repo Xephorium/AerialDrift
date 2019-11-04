@@ -17,7 +17,7 @@ public class HelicopterController : MonoBehaviour
 
     // Private Constants
     private static float CAMERA_MOVEMENT_FACTOR = .8f;
-    private static float CAMERA_DEPTH_FACTOR = .6f;
+    private static float CAMERA_DEPTH_FACTOR = 1f;
     private static float MAX_SPEED = 20f;
     private static float MAX_CAMERA_CHANGE_POS = .01f;
     private static float MAX_CAMERA_CHANGE_ROT = .01f;
@@ -49,9 +49,9 @@ public class HelicopterController : MonoBehaviour
         // Get Initial State
         initialPosition = transform.position;
         initialRotation = transform.rotation;
-        craftRotationX = initialRotation.x;
-        craftRotationY = initialRotation.y;
-        craftRotationZ = initialRotation.z;
+        craftRotationX = initialRotation.eulerAngles.x;
+        craftRotationY = initialRotation.eulerAngles.y;
+        craftRotationZ = initialRotation.eulerAngles.z;
 
         // Get Components
         hcRigidbody = GetComponent<Rigidbody>();
@@ -107,7 +107,7 @@ public class HelicopterController : MonoBehaviour
 
             // Calculate Player Rotation
             float shipPitch = 0;
-            float shipYaw = -mousePercentX * 5;
+            float shipYaw = -mousePercentX * 3.5f;
             float shipRoll = 0;
 
             // Setup Bank Variables
@@ -167,7 +167,7 @@ public class HelicopterController : MonoBehaviour
             }
 
             // Calculate Camera Z Position
-            float targetPositionZ = -(speedFactor * CAMERA_DEPTH_FACTOR);
+            float targetPositionZ = -(Mathf.Clamp(speedFactor * 2f, 0f, 1f) * CAMERA_DEPTH_FACTOR);
             if (targetPositionZ < cameraPositionZ) {
                 cameraPositionZ = Mathf.Clamp(cameraPositionZ - MAX_CAMERA_CHANGE_POS, targetPositionZ, 0);
             } else if (targetPositionZ > cameraPositionZ) {
@@ -205,6 +205,9 @@ public class HelicopterController : MonoBehaviour
         // Reset Position, Rotation, Velocity
         transform.position = initialPosition;
         transform.rotation = initialRotation;
+        craftRotationX = initialRotation.eulerAngles.x;
+        craftRotationY = initialRotation.eulerAngles.y;
+        craftRotationZ = initialRotation.eulerAngles.z;
         hcRigidbody.velocity = new Vector3(0, 0, 0);
     }
 }
