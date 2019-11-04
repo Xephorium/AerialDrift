@@ -23,6 +23,7 @@ public class HelicopterController : MonoBehaviour
     private static float MAX_CAMERA_CHANGE_ROT = .01f;
     private static float MAX_BANK_ANGLE = 7f;
     private static float MAX_CRAFT_CHANGE_ROT = .2f;
+    private static float BANK_TRANSITION_TAPERING = .2f;
 
     // Private Variables
     private Rigidbody hcRigidbody;
@@ -118,10 +119,18 @@ public class HelicopterController : MonoBehaviour
 
             // Calculate X Rotation (Bank)
             float targetCraftRotationX = bankYaw;
+            float distanceFromMax = (MAX_BANK_ANGLE - Mathf.Abs(craftRotationX)) / MAX_BANK_ANGLE;
+            distanceFromMax = distanceFromMax * (1f - BANK_TRANSITION_TAPERING) + BANK_TRANSITION_TAPERING;
+            if ((targetCraftRotationX > craftRotationX && craftRotationX < 0f)
+            		|| (targetCraftRotationX < craftRotationX && craftRotationX > 0f)) {
+            	distanceFromMax = 1f;
+            }
             if (targetCraftRotationX < craftRotationX) {
-                craftRotationX = Mathf.Clamp(craftRotationX - MAX_CRAFT_CHANGE_ROT, targetCraftRotationX, 100);
+                craftRotationX = Mathf.Clamp(craftRotationX - (MAX_CRAFT_CHANGE_ROT * distanceFromMax), targetCraftRotationX, 100);
+            	print("Temp - x3 - " + craftRotationX.ToString());
             } else if (targetCraftRotationX > craftRotationX) {
-                craftRotationX = Mathf.Clamp(craftRotationX + MAX_CRAFT_CHANGE_ROT, -100, targetCraftRotationX);
+                craftRotationX = Mathf.Clamp(craftRotationX + (MAX_CRAFT_CHANGE_ROT * distanceFromMax), -100, targetCraftRotationX);
+            	print("Temp - x4 - " + craftRotationX.ToString());
             }
 
             // Calculate Y Rotation (Turn)
@@ -130,10 +139,16 @@ public class HelicopterController : MonoBehaviour
 
             // Calculate Z Rotation (Bank)
             float targetCraftRotationZ = -bankRoll;
+            distanceFromMax = (MAX_BANK_ANGLE - Mathf.Abs(craftRotationZ)) / MAX_BANK_ANGLE;
+            distanceFromMax = distanceFromMax * (1f - BANK_TRANSITION_TAPERING) + BANK_TRANSITION_TAPERING;
+            if ((targetCraftRotationZ > craftRotationZ && craftRotationZ < 0f)
+            		|| (targetCraftRotationZ < craftRotationZ && craftRotationZ > 0f)) {
+            	distanceFromMax = 1f;
+            }
             if (targetCraftRotationZ < craftRotationZ) {
-                craftRotationZ = Mathf.Clamp(craftRotationZ - MAX_CRAFT_CHANGE_ROT, targetCraftRotationZ, 100);
+                craftRotationZ = Mathf.Clamp(craftRotationZ - (MAX_CRAFT_CHANGE_ROT * distanceFromMax), targetCraftRotationZ, 100);
             } else if (targetCraftRotationZ > craftRotationZ) {
-                craftRotationZ = Mathf.Clamp(craftRotationZ + MAX_CRAFT_CHANGE_ROT, -100, targetCraftRotationZ);
+                craftRotationZ = Mathf.Clamp(craftRotationZ + (MAX_CRAFT_CHANGE_ROT * distanceFromMax), -100, targetCraftRotationZ);
             }
 
             // Apply Rotation
