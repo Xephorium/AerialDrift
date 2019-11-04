@@ -21,11 +21,16 @@ public class HelicopterController : MonoBehaviour
     private static float MAX_SPEED = 20f;
     private static float MAX_CAMERA_CHANGE_POS = .01f;
     private static float MAX_CAMERA_CHANGE_ROT = .01f;
+    private static float MAX_BANK_ANGLE = 7f;
+    private static float MAX_CRAFT_CHANGE_ROT = .2f;
 
     // Private Variables
     private Rigidbody hcRigidbody;
     private Vector3 initialPosition;
     private Quaternion initialRotation;
+    private float craftRotationX = 0f;
+    private float craftRotationY = 0f;
+    private float craftRotationZ = 0f;
     private float cameraPositionX = 0f;
     private float cameraPositionY = 0f;
     private float cameraPositionZ = 0f;
@@ -44,6 +49,9 @@ public class HelicopterController : MonoBehaviour
         // Get Initial State
         initialPosition = transform.position;
         initialRotation = transform.rotation;
+        craftRotationX = initialRotation.x;
+        craftRotationY = initialRotation.y;
+        craftRotationZ = initialRotation.z;
 
         // Get Components
         hcRigidbody = GetComponent<Rigidbody>();
@@ -54,7 +62,20 @@ public class HelicopterController : MonoBehaviour
 
     void FixedUpdate() {
         if (isPlayerControlling) {
-      
+
+
+        	/*--- Determine Unbanked Vectors ---*/
+
+        	Vector3 forward = hcRigidbody.transform.forward +
+        		Vector3.Reflect(hcRigidbody.transform.forward, Vector3.up);
+        	forward = forward / 2f;
+        	Vector3 right = hcRigidbody.transform.right +
+        		Vector3.Reflect(hcRigidbody.transform.right, Vector3.up);
+        	right = right / 2f;
+        	Vector3 up = hcRigidbody.transform.up +
+        		Vector3.Reflect(hcRigidbody.transform.up, Vector3.right);
+        	up = up / 2f;
+
 
             /*--- Update Ship Translation ---*/
 
@@ -64,9 +85,9 @@ public class HelicopterController : MonoBehaviour
             float moveRightLeft = Input.GetAxis("ControlRoll");
 
             // Create Individual Force Vectors
-            Vector3 forceForwardBack = transform.forward * 10 * moveForwardBack;
-            Vector3 forceUpDown = transform.up * 5 * moveUpDown;
-            Vector3 forceRightLeft = transform.right * 10 * moveRightLeft;
+            Vector3 forceForwardBack = forward * 10 * moveForwardBack;
+            Vector3 forceUpDown = up * 5 * moveUpDown;
+            Vector3 forceRightLeft = right * 10 * moveRightLeft;
 
             // Combine Force Vectors
             Vector3 combinedForce = forceForwardBack + forceUpDown + forceRightLeft;
@@ -78,30 +99,56 @@ public class HelicopterController : MonoBehaviour
 
             /*--- Update Ship Rotation ---*/
 
-            // Calculate Pitch & Yaw
+            // Calculate Pitch & Yaw Inputs
             float mousePercentXRaw = (Screen.width/2 - (Input.mousePosition[0] + 20)) / (Screen.height * .75f);
             float mousePercentYRaw = (Screen.height/2 - (Input.mousePosition[1] - 20)) / (Screen.height * .75f);
             float mousePercentX = Mathf.Sign(mousePercentXRaw) * Mathf.Pow(mousePercentXRaw, 2);
             float mousePercentY = Mathf.Sign(mousePercentYRaw) * Mathf.Pow(mousePercentYRaw, 2);
 
-            // Apply Transformations
-            float shipPitch = 0; // mousePercentY * 5;
+            // Calculate Player Rotation
+            float shipPitch = 0;
             float shipYaw = -mousePercentX * 5;
             float shipRoll = 0;
 
+            // Setup Bank Variables
+            float forwardSpeed = Mathf.Clamp(Vector3.Dot(hcRigidbody.velocity, forward) / MAX_SPEED, -1, 1);
+            float rightSpeed = Mathf.Clamp(Vector3.Dot(hcRigidbody.velocity, right) / MAX_SPEED, -1, 1);
+            float bankRoll = moveRightLeft * MAX_BANK_ANGLE;
+            float bankYaw = moveForwardBack * MAX_BANK_ANGLE;
+
+            // Calculate X Rotation (Bank)
+            float targetCraftRotationX = bankYaw;
+            if (targetCraftRotationX < craftRotationX) {
+                craftRotationX = Mathf.Clamp(craftRotationX - MAX_CRAFT_CHANGE_ROT, targetCraftRotationX, 100);
+            } else if (targetCraftRotationX > craftRotationX) {
+                craftRotationX = Mathf.Clamp(craftRotationX + MAX_CRAFT_CHANGE_ROT, -100, targetCraftRotationX);
+            }
+
+            // Calculate Y Rotation (Turn)
+            float targetCraftRotationY = craftRotationY + shipYaw;
+            craftRotationY = targetCraftRotationY;
+
+            // Calculate Z Rotation (Bank)
+            float targetCraftRotationZ = -bankRoll;
+            if (targetCraftRotationZ < craftRotationZ) {
+                craftRotationZ = Mathf.Clamp(craftRotationZ - MAX_CRAFT_CHANGE_ROT, targetCraftRotationZ, 100);
+            } else if (targetCraftRotationZ > craftRotationZ) {
+                craftRotationZ = Mathf.Clamp(craftRotationZ + MAX_CRAFT_CHANGE_ROT, -100, targetCraftRotationZ);
+            }
+
             // Apply Rotation
-            transform.Rotate(
-                shipPitch,
-                shipYaw,
-                shipRoll,
-                Space.Self
+            transform.rotation = Quaternion.Euler(
+                craftRotationX,
+             	craftRotationY,
+             	craftRotationZ
             );
 
 
             /*--- Update Camera ---*/
 
             // Calculate Speed
-            float speedFactor = Mathf.Clamp01(hcRigidbody.velocity.magnitude / MAX_SPEED);
+            forwardSpeed = Mathf.Clamp01((Vector3.Dot(hcRigidbody.velocity, forward) / MAX_SPEED));
+            float speedFactor = Mathf.Clamp01(hcRigidbody.velocity.magnitude / MAX_SPEED) * forwardSpeed;
 
             // Calculate Camera X Position
             float targetPositionX = -mousePercentX * (CAMERA_MOVEMENT_FACTOR / 2) * speedFactor;
@@ -134,27 +181,11 @@ public class HelicopterController : MonoBehaviour
                 cameraPositionZ
             );
 
-            // Calculate Camera X Rotation
-            float targetRotationX = -mousePercentY * 1.5f * speedFactor;
-            if (targetRotationX < cameraRotationX) {
-                cameraRotationX = Mathf.Clamp(cameraRotationX - MAX_CAMERA_CHANGE_ROT, targetRotationX, 180);
-            } else if (targetRotationX > cameraRotationX) {
-                cameraRotationX = Mathf.Clamp(cameraRotationX + MAX_CAMERA_CHANGE_ROT, -180, targetRotationX);
-            }
-
-            // Calculate Camera Y Rotation
-            float targetRotationY = mousePercentX * 3f * speedFactor;
-            if (targetRotationY < cameraRotationY) {
-                cameraRotationY = Mathf.Clamp(cameraRotationY - MAX_CAMERA_CHANGE_ROT, targetRotationY, 180);
-            } else if (targetRotationY > cameraRotationY) {
-                cameraRotationY = Mathf.Clamp(cameraRotationY + MAX_CAMERA_CHANGE_ROT, -180, targetRotationY);
-            }
-
             // Apply Camera Rotation
-            cameraEmpty.transform.localRotation = Quaternion.Euler(
-                cameraRotationX,
-                cameraRotationY,
-                cameraRotationZ
+            cameraEmpty.transform.eulerAngles = new Vector3(
+                0,
+                transform.eulerAngles.y,
+                0
             );
 
 
