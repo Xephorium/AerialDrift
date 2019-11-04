@@ -13,6 +13,10 @@ public class HelicopterController : MonoBehaviour
     // Public Variables
     public GameObject cameraEmpty;
     public Camera camera;
+    public GameObject propellerBig;
+    public GameObject propellerSpinnerBig;
+    public GameObject propellerSmall;
+    public GameObject propellerSpinnerSmall;
     public bool isPlayerControlling = false;
 
     // Private Constants
@@ -24,11 +28,14 @@ public class HelicopterController : MonoBehaviour
     private static float MAX_BANK_ANGLE = 7f;
     private static float MAX_CRAFT_CHANGE_ROT = .2f;
     private static float BANK_TRANSITION_TAPERING = .2f;
+    private static float THROTTLE_CHANGE_RATE = 0.3f;
+    private static float THROTTLE_DEAD_ZONE = 0.7f;
 
     // Private Variables
     private Rigidbody hcRigidbody;
     private Vector3 initialPosition;
     private Quaternion initialRotation;
+    private float currentThrottle = 0f;
     private float craftRotationX = 0f;
     private float craftRotationY = 0f;
     private float craftRotationZ = 0f;
@@ -86,9 +93,13 @@ public class HelicopterController : MonoBehaviour
             float moveRightLeft = Input.GetAxis("ControlRoll");
 
             // Create Individual Force Vectors
-            Vector3 forceForwardBack = forward * 10 * moveForwardBack;
-            Vector3 forceUpDown = up * 5 * moveUpDown;
-            Vector3 forceRightLeft = right * 10 * moveRightLeft;
+            float throttleFactor = (currentThrottle * (1f - THROTTLE_DEAD_ZONE)) + THROTTLE_DEAD_ZONE;
+            if (currentThrottle < THROTTLE_DEAD_ZONE) {
+            	throttleFactor = 0f;
+            }
+            Vector3 forceForwardBack = forward * 10 * moveForwardBack * throttleFactor;
+            Vector3 forceUpDown = up * 5 * moveUpDown * throttleFactor;
+            Vector3 forceRightLeft = right * 10 * moveRightLeft * throttleFactor;
 
             // Combine Force Vectors
             Vector3 combinedForce = forceForwardBack + forceUpDown + forceRightLeft;
@@ -108,14 +119,14 @@ public class HelicopterController : MonoBehaviour
 
             // Calculate Player Rotation
             float shipPitch = 0;
-            float shipYaw = -mousePercentX * 3.5f;
+            float shipYaw = -mousePercentX * 3.5f * throttleFactor;
             float shipRoll = 0;
 
             // Setup Bank Variables
             float forwardSpeed = Mathf.Clamp(Vector3.Dot(hcRigidbody.velocity, forward) / MAX_SPEED, -1, 1);
             float rightSpeed = Mathf.Clamp(Vector3.Dot(hcRigidbody.velocity, right) / MAX_SPEED, -1, 1);
-            float bankRoll = moveRightLeft * MAX_BANK_ANGLE;
-            float bankYaw = moveForwardBack * MAX_BANK_ANGLE;
+            float bankRoll = moveRightLeft * MAX_BANK_ANGLE * throttleFactor;
+            float bankYaw = moveForwardBack * MAX_BANK_ANGLE * throttleFactor;
 
             // Calculate X Rotation (Bank)
             float targetCraftRotationX = bankYaw;
@@ -204,6 +215,60 @@ public class HelicopterController : MonoBehaviour
             );
 
 
+            /*--- Update Control Surfaces ---*/
+
+            // Update Throttle
+            if (currentThrottle != 1f) {
+            	currentThrottle = Mathf.Clamp01(currentThrottle + (Time.deltaTime * THROTTLE_CHANGE_RATE));
+            }
+
+            // Update Propeller Speed
+            propellerBig.transform.Rotate(new Vector3(0, currentThrottle * 360 * 10, 0) * Time.deltaTime);
+            propellerSmall.transform.Rotate(new Vector3(currentThrottle * 360 * 10, 0, 0) * Time.deltaTime);
+
+            // Calculate Propeller Visibility
+            float visibility = 0f;
+            if (currentThrottle > .5f) {
+            	visibility = (currentThrottle - .5f) * 2f;
+            }
+
+            // Update Big Propeller Visibility
+            var spinnerRenderer = propellerBig.GetComponent<Renderer>();
+            spinnerRenderer.material.SetColor("_Color", new Color(
+            	spinnerRenderer.material.color.r,
+            	spinnerRenderer.material.color.g,
+            	spinnerRenderer.material.color.b,
+            	1 - visibility
+            ));
+
+            // Update Small Propeller Visibility
+            spinnerRenderer = propellerSmall.GetComponent<Renderer>();
+            spinnerRenderer.material.SetColor("_Color", new Color(
+            	spinnerRenderer.material.color.r,
+            	spinnerRenderer.material.color.g,
+            	spinnerRenderer.material.color.b,
+            	1 - visibility
+            ));
+
+            // Update Big Propeller Spinner Visibility
+            spinnerRenderer = propellerSpinnerBig.GetComponent<Renderer>();
+            spinnerRenderer.material.SetColor("_Color", new Color(
+            	spinnerRenderer.material.color.r,
+            	spinnerRenderer.material.color.g,
+            	spinnerRenderer.material.color.b,
+            	visibility  * .3f
+            ));
+
+            // Update SmallPropeller Spinner Visibility
+            spinnerRenderer = propellerSpinnerSmall.GetComponent<Renderer>();
+            spinnerRenderer.material.SetColor("_Color", new Color(
+            	spinnerRenderer.material.color.r,
+            	spinnerRenderer.material.color.g,
+            	spinnerRenderer.material.color.b,
+            	visibility  * .3f
+            ));
+
+
         } else {
 
             // Apply Default Gravity
@@ -217,12 +282,45 @@ public class HelicopterController : MonoBehaviour
 
     public void reset() {
 
-        // Reset Position, Rotation, Velocity
+        // Reset Position, Rotation, Velocity, Throttle
         transform.position = initialPosition;
         transform.rotation = initialRotation;
         craftRotationX = initialRotation.eulerAngles.x;
         craftRotationY = initialRotation.eulerAngles.y;
         craftRotationZ = initialRotation.eulerAngles.z;
         hcRigidbody.velocity = new Vector3(0, 0, 0);
+        currentThrottle = 0f;
+
+        // Reset Propellers
+        var spinnerRenderer = propellerBig.GetComponent<Renderer>();
+        spinnerRenderer.material.SetColor("_Color", new Color(
+        	spinnerRenderer.material.color.r,
+        	spinnerRenderer.material.color.g,
+        	spinnerRenderer.material.color.b,
+        	1f
+        ));
+        spinnerRenderer = propellerSmall.GetComponent<Renderer>();
+        spinnerRenderer.material.SetColor("_Color", new Color(
+        	spinnerRenderer.material.color.r,
+        	spinnerRenderer.material.color.g,
+        	spinnerRenderer.material.color.b,
+        	1f
+        ));
+
+        // Update Propeller Spinner Visibilities
+        spinnerRenderer = propellerSpinnerBig.GetComponent<Renderer>();
+        spinnerRenderer.material.SetColor("_Color", new Color(
+        	spinnerRenderer.material.color.r,
+        	spinnerRenderer.material.color.g,
+        	spinnerRenderer.material.color.b,
+        	0f
+        ));
+        spinnerRenderer = propellerSpinnerSmall.GetComponent<Renderer>();
+        spinnerRenderer.material.SetColor("_Color", new Color(
+        	spinnerRenderer.material.color.r,
+        	spinnerRenderer.material.color.g,
+        	spinnerRenderer.material.color.b,
+        	0f
+        ));
     }
 }

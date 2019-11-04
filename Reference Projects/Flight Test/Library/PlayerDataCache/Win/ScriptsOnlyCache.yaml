@@ -532,7 +532,7 @@ ScriptsOnlyBuild:
     className: StandaloneInputModule
   - hash:
       serializedVersion: 2
-      Hash: eb57725582729afdefd0ffab54f27448
+      Hash: 218d684e58095c301bc504cde2ba2062
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: HelicopterController
