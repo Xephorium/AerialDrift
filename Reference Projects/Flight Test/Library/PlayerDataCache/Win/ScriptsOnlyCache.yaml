@@ -44,8 +44,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 64
       Script: {instanceID: 0}
-    - Class: 65
-      Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
     - Class: 89
@@ -572,5 +570,5 @@ ScriptsOnlyBuild:
   platform: 5
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/Users/Xephorium/Home/Projects/Game Dev/Unity Projects/UMSL Final/Reference
+  playerPath: C:/Users/Xephorium/Documents/Home/Projects/Games/Unity/UMSL Final/Reference
     Projects/Flight Test/Build/Flight Test.exe
