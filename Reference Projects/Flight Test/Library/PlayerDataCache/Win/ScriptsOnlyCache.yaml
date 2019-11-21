@@ -1,6 +1,7 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - BalloonController
     - BiplaneController
     - CameraController
     - GameController
@@ -84,6 +85,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 11352}
     - Class: 114
       Script: {instanceID: 11358}
+    - Class: 114
+      Script: {instanceID: 11398}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -555,6 +558,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Slider
+  - hash:
+      serializedVersion: 2
+      Hash: b8d47bb1fa9f6bcd9e8d836891862535
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BalloonController
   - hash:
       serializedVersion: 2
       Hash: 0fd6822f6177297bd0eb4d83cc7a9030
