@@ -60,6 +60,7 @@
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
      <Compile Include="Assets\Scripts\HelicopterController.cs" />
+     <Compile Include="Assets\Scripts\MenuPositioner.cs" />
      <Compile Include="Assets\Scripts\MenuRotator.cs" />
      <Compile Include="Assets\Scripts\UIController.cs" />
      <Compile Include="Assets\Scripts\ViperController.cs" />
