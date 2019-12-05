@@ -9,11 +9,15 @@ public class GameController : MonoBehaviour {
 
 	// Data Structures
 	public enum GameState {
+        none,
 		menu,
 		select,
 		flightBiplane,
 		flightHelicopter,
-		flightViper
+		flightViper,
+        pauseBiplane,
+        pauseHelicopter,
+        pauseViper
 	};
 
 	// Public Variables
@@ -26,11 +30,13 @@ public class GameController : MonoBehaviour {
     private bool animatingTransition = true;
     private float time = 0f;
     private float transitionEnd = 0f;
+    private GameState prePauseState = GameState.none;
 
 
 	/*--- Lifecycle Methods ---*/
 
     void Start() {
+        gameState = GameState.menu;
         gameStateChanged = true;
     }
 
@@ -46,18 +52,36 @@ public class GameController : MonoBehaviour {
     		|| gameState == GameState.flightViper) {
 
             // Handle Queued Transition
-            if (!animatingTransition && fadeInQueued) {
+            if (!animatingTransition && fadeInQueued && prePauseState == GameState.none) {
                 BiplaneController.instance.reset();
                 HelicopterController.instance.reset();
                 ViperController.instance.reset();
                 handleQueuedTransition();
+            } else if (!animatingTransition && fadeInQueued && prePauseState != GameState.none) {
+                handleQueuedTransition();
+                prePauseState = GameState.none;
             }
 
     		// Handle Back Click
             if (!animatingTransition) {
         		if (Input.GetKeyDown("escape")) {
-        			updateGameState(GameState.select);
-                    beginTransition();
+                    prePauseState = gameState;
+                    pauseSumulation();
+
+                    // Determine Pause State
+                    GameState pauseState = GameState.pauseBiplane;
+                    if (gameState == GameState.flightBiplane) {
+                        pauseState = GameState.pauseBiplane;
+                    }
+                    if (gameState == GameState.flightHelicopter) {
+                        pauseState = GameState.pauseHelicopter;
+                    }
+                    if (gameState == GameState.flightViper) {
+                        pauseState = GameState.pauseViper;
+                    }
+
+                    // Set Pause State
+        			updateGameState(pauseState);
         		}
             }
 
@@ -88,6 +112,11 @@ public class GameController : MonoBehaviour {
 
     	// Select Logic
     	} else if (gameState == GameState.select) {
+
+            // Reset Pause Flag
+            if (prePauseState != GameState.none) {
+                prePauseState = GameState.none;
+            }
 
             // Handle Queued Transition
             if (!animatingTransition && fadeInQueued) {
@@ -122,7 +151,33 @@ public class GameController : MonoBehaviour {
         			}
         		}
             }
-    	}
+    	
+
+        // Pause Logic
+        } else if (
+                gameState == GameState.pauseBiplane
+                || gameState == GameState.pauseHelicopter
+                || gameState == GameState.pauseViper
+            ) {
+
+            // Handle Queued Transition
+            if (!animatingTransition && fadeInQueued) {
+                handleQueuedTransition();
+            }
+
+            // Handle Back Click
+            if (!animatingTransition) {
+                if (Input.GetKeyDown("escape")) {
+                    resumeSumulation();
+                    updateGameState(GameState.select);
+                    beginTransition();
+                } else if (Input.anyKey && !Input.GetKey("escape")) {
+                    updateGameState(prePauseState);
+                    resumeSumulation();
+                }
+            }
+
+        }
 
     	// Handle Game State Change
     	if (!initialTransitionInitiated || (!animatingTransition && gameStateChanged)) {
@@ -146,10 +201,16 @@ public class GameController : MonoBehaviour {
     		UIController.instance.showMenuUI();
     	} else if (gameState == GameState.select) {
     		UIController.instance.showSelectUI();
-    	} else {
+    	} else if (gameState == GameState.flightBiplane
+                || gameState == GameState.flightHelicopter
+                || gameState == GameState.flightViper) {
     		UIController.instance.showFlightUI();
             UIController.instance.centerCursor();
-    	}
+    	} else if (gameState == GameState.pauseBiplane
+                || gameState == GameState.pauseHelicopter
+                || gameState == GameState.pauseViper) {
+            UIController.instance.showPauseUI();
+        } 
     }
 
     private void updateCamera() {
@@ -161,7 +222,7 @@ public class GameController : MonoBehaviour {
     	    CameraController.instance.showBiplaneCamera();
     	} else if (gameState == GameState.flightHelicopter) {
     	    CameraController.instance.showHelicopterCamera();
-    	} else {
+    	} else if (gameState == GameState.flightViper || gameState == GameState.pauseViper) {
     	    CameraController.instance.showViperCamera();
     	}
     }
@@ -180,7 +241,7 @@ public class GameController : MonoBehaviour {
     		BiplaneController.instance.isPlayerControlling = false;
     		HelicopterController.instance.isPlayerControlling = true;
     		ViperController.instance.isPlayerControlling = false;
-    	} else {
+    	} else if (gameState == GameState.flightViper) {
     		BiplaneController.instance.isPlayerControlling = false;
     		HelicopterController.instance.isPlayerControlling = false;
     		ViperController.instance.isPlayerControlling = true;
@@ -200,11 +261,11 @@ public class GameController : MonoBehaviour {
         fadeInQueued = false;
     }
 
-    private void toggleSimulationPause() {
-        if (Time.timeScale == 0f) {
-            Time.timeScale = 1f;
-        } else {
-            Time.timeScale = 0f;
-        }
+    private void pauseSumulation() {
+        Time.timeScale = 0f;
+    }
+
+    private void resumeSumulation() {
+        Time.timeScale = 1f;
     }
 }

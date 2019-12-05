@@ -25,6 +25,7 @@ public class UIController : MonoBehaviour {
 	public CanvasGroup menuCanvasGroup;
 	public CanvasGroup selectCanvasGroup;
 	public CanvasGroup flightCanvasGroup;
+	public CanvasGroup pauseCanvasGroup;
 
     // Private Variables
     private Texture2D fadeTexture;
@@ -92,6 +93,7 @@ public class UIController : MonoBehaviour {
     	menuCanvasGroup.blocksRaycasts = true;
     	hideSelectUI();
     	hideFlightUI();
+    	hidePauseUI();
     }
 
     public void showSelectUI() {
@@ -99,6 +101,7 @@ public class UIController : MonoBehaviour {
     	selectCanvasGroup.blocksRaycasts = true;
     	hideMenuUI();
     	hideFlightUI();
+    	hidePauseUI();
     }
 
     public void showFlightUI() {
@@ -106,6 +109,15 @@ public class UIController : MonoBehaviour {
     	flightCanvasGroup.blocksRaycasts = true;
     	hideMenuUI();
     	hideSelectUI();
+    	hidePauseUI();
+    }
+
+    public void showPauseUI() {
+    	pauseCanvasGroup.alpha = 1f;
+    	pauseCanvasGroup.blocksRaycasts = true;
+    	hideMenuUI();
+    	hideSelectUI();
+    	hideFlightUI();
     }
 
     public void fadeToWhite() {
@@ -161,5 +173,10 @@ public class UIController : MonoBehaviour {
     private void hideFlightUI() {
         flightCanvasGroup.alpha = 0f;
         flightCanvasGroup.blocksRaycasts = false;
+    }
+
+    private void hidePauseUI() {
+    	pauseCanvasGroup.alpha = 0f;
+    	pauseCanvasGroup.blocksRaycasts = false;
     }
 }
