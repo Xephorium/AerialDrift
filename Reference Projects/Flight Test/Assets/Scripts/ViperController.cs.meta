@@ -3,7 +3,19 @@ guid: 0c2cb5ba3cdfbcc488ecd5a880fc388e
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - cameraEmpty: {instanceID: 0}
+  - camera: {instanceID: 0}
+  - trailEmitterLeft: {instanceID: 0}
+  - trailEmitterRight: {instanceID: 0}
+  - jetTop: {instanceID: 0}
+  - jetSmokeTop: {instanceID: 0}
+  - jetLeft: {instanceID: 0}
+  - jetSmokeLeft: {instanceID: 0}
+  - jetRight: {instanceID: 0}
+  - jetSmokeRight: {instanceID: 0}
+  - projectilePrefab: {fileID: 4347091163443465382, guid: 0cc86e3e7bcf6624e84ddfc6aba54a0d,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

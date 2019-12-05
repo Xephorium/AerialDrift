@@ -21,6 +21,8 @@ public class ViperController : MonoBehaviour
     public GameObject jetSmokeLeft;
     public GameObject jetRight;
     public GameObject jetSmokeRight;
+    public GameObject projectileEmitter;
+    public Transform projectilePrefab;
     public bool isPlayerControlling = false;
 
     // Private Constants
@@ -30,6 +32,7 @@ public class ViperController : MonoBehaviour
     private static float MAX_SPEED = 20f;
     private static float MAX_CAMERA_CHANGE_POS = .01f;
     private static float MAX_CAMERA_CHANGE_ROT = .01f;
+    private static float FIRE_DELAY = .35f;
 
     // Private Variables
     private Rigidbody vpRigidbody;
@@ -43,6 +46,7 @@ public class ViperController : MonoBehaviour
     private float cameraRotationX = 0f;
     private float cameraRotationY = 0f;
     private float cameraRotationZ = 0f;
+    private float lastFireTime = 0f;
 
     // Boost Constants
     private static float DEFAULT_FOV = 70f;
@@ -120,6 +124,26 @@ public class ViperController : MonoBehaviour
                 boostChange = false;
             }
             boost = Input.GetKey(KeyCode.LeftShift);
+            float fireInput = Input.GetAxis("Fire1");
+
+
+            /*--- Fire Projectile ---*/
+
+            // Account for Fire Delay
+            bool fire = fireInput == 1f && lastFireTime + FIRE_DELAY < Time.fixedTime;
+            
+            if (fire) {
+
+            	// Update Last Fire Time
+            	lastFireTime = Time.fixedTime;
+
+            	// Create Pojectile
+            	Transform projectile = Instantiate(projectilePrefab, projectileEmitter.transform.position, transform.rotation);
+
+            	// Apply Forward Force
+            	Rigidbody projectileRigidbody = projectile.GetComponent<Rigidbody>();
+            	projectileRigidbody.AddForce((transform.forward + (transform.up * .05f)) * 7000f);
+            }
       
 
             /*--- Update Ship Translation ---*/

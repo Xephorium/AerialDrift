@@ -8,6 +8,7 @@ ScriptsOnlyBuild:
     - HelicopterController
     - MenuPositioner
     - MenuRotator
+    - ProjectileController
     - UIController
     - ViperController
     UnityEditor.TestRunner.dll:
@@ -90,6 +91,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 11360}
     - Class: 114
       Script: {instanceID: 11400}
+    - Class: 114
+      Script: {instanceID: 15198}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -431,7 +434,7 @@ ScriptsOnlyBuild:
     className: Physics2DRaycaster
   - hash:
       serializedVersion: 2
-      Hash: c3a04f5dd9f72aacb2e2b6f275bf4184
+      Hash: 4d96b5f0d153549154c10c47cc39ba81
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ViperController
@@ -585,6 +588,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ProjectileController
   platform: 5
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
