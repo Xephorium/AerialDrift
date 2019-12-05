@@ -72,27 +72,27 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10316}
     - Class: 114
-      Script: {instanceID: 10412}
+      Script: {instanceID: 10340}
     - Class: 114
-      Script: {instanceID: 10590}
+      Script: {instanceID: 10414}
     - Class: 114
-      Script: {instanceID: 10650}
+      Script: {instanceID: 10592}
     - Class: 114
-      Script: {instanceID: 10844}
+      Script: {instanceID: 10652}
     - Class: 114
-      Script: {instanceID: 10910}
+      Script: {instanceID: 10846}
     - Class: 114
-      Script: {instanceID: 11014}
+      Script: {instanceID: 10914}
     - Class: 114
-      Script: {instanceID: 11302}
+      Script: {instanceID: 11018}
     - Class: 114
-      Script: {instanceID: 11354}
+      Script: {instanceID: 11306}
     - Class: 114
-      Script: {instanceID: 11360}
+      Script: {instanceID: 11358}
     - Class: 114
-      Script: {instanceID: 11400}
+      Script: {instanceID: 11364}
     - Class: 114
-      Script: {instanceID: 15198}
+      Script: {instanceID: 11404}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -218,7 +218,7 @@ ScriptsOnlyBuild:
     className: GridLayoutGroup
   - hash:
       serializedVersion: 2
-      Hash: 554a563dafe3be11b51b1d1ca8d6675a
+      Hash: 715ac006d960fbd2df28204e585c8956
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BiplaneController
@@ -324,6 +324,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameController
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ProjectileController
   - hash:
       serializedVersion: 2
       Hash: b3ab2106268377ffe25dd18ac23dca28
@@ -548,7 +554,7 @@ ScriptsOnlyBuild:
     className: StandaloneInputModule
   - hash:
       serializedVersion: 2
-      Hash: 218d684e58095c301bc504cde2ba2062
+      Hash: 9ab5c17b89cf2becf97f80a66de64d72
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: HelicopterController
@@ -588,14 +594,8 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: ProjectileController
   platform: 5
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/Users/Xephorium/Home/Projects/Game Dev/Unity Projects/UMSL Final/Reference
+  playerPath: C:/Users/Xephorium/Documents/Home/Projects/Games/Unity/UMSL Final/Reference
     Projects/Flight Test/Build/Flight Test.exe

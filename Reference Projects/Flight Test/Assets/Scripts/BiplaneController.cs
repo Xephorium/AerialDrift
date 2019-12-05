@@ -21,6 +21,8 @@ public class BiplaneController : MonoBehaviour {
     public GameObject propellerSpinner;
     public GameObject trailEmitterLeft;
     public GameObject trailEmitterRight;
+    public GameObject projectileEmitter;
+    public Transform projectilePrefab;
     public bool isPlayerControlling = false;
 
     // Private Constants
@@ -32,6 +34,7 @@ public class BiplaneController : MonoBehaviour {
     private static float MAX_FIN_ANGLE = 20f;
     private static float MAX_CAMERA_CHANGE_POS = .01f;
     private static float MAX_CAMERA_CHANGE_ROT = .01f;
+    private static float FIRE_DELAY = .35f;
 
     // Private Variables
     private Rigidbody bpRigidbody;
@@ -45,6 +48,7 @@ public class BiplaneController : MonoBehaviour {
     private float cameraRotationX = 0f;
     private float cameraRotationY = 0f;
     private float cameraRotationZ = 0f;
+    private float lastFireTime = 0f;
 
     // Flight Simulation Constants
     private static float MAX_ENGINE_POWER = 33f;       // The maximum output of the engine.
@@ -92,7 +96,27 @@ public class BiplaneController : MonoBehaviour {
 
     void FixedUpdate() {
         if (isPlayerControlling) {
-      
+
+
+            /*--- Fire Projectile ---*/
+
+            // Account for Fire Delay
+            float fireInput = Input.GetAxis("Fire1");
+            bool fire = fireInput == 1f && lastFireTime + FIRE_DELAY < Time.fixedTime;
+            
+            if (fire) {
+
+                // Update Last Fire Time
+                lastFireTime = Time.fixedTime;
+
+                // Create Pojectile
+                Transform projectile = Instantiate(projectilePrefab, projectileEmitter.transform.position, transform.rotation);
+
+                // Apply Forward Force
+                Rigidbody projectileRigidbody = projectile.GetComponent<Rigidbody>();
+                projectileRigidbody.AddForce((transform.forward + (transform.up * .05f)) * 7000f);
+            }
+
 
             /*--- Simulate Flight Mechanics ---*/
 

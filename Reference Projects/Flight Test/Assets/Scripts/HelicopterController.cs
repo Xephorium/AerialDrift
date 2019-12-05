@@ -17,6 +17,8 @@ public class HelicopterController : MonoBehaviour
     public GameObject propellerSpinnerBig;
     public GameObject propellerSmall;
     public GameObject propellerSpinnerSmall;
+    public GameObject projectileEmitter;
+    public Transform projectilePrefab;
     public bool isPlayerControlling = false;
 
     // Private Constants
@@ -30,6 +32,7 @@ public class HelicopterController : MonoBehaviour
     private static float BANK_TRANSITION_TAPERING = .2f;
     private static float THROTTLE_CHANGE_RATE = 0.3f;
     private static float THROTTLE_DEAD_ZONE = 0.7f;
+    private static float FIRE_DELAY = .35f;
 
     // Private Variables
     private Rigidbody hcRigidbody;
@@ -45,6 +48,7 @@ public class HelicopterController : MonoBehaviour
     private float cameraRotationX = 0f;
     private float cameraRotationY = 0f;
     private float cameraRotationZ = 0f;
+    private float lastFireTime = 0f;
 
 
     /*--- Lifecycle Methods ---*/
@@ -83,6 +87,26 @@ public class HelicopterController : MonoBehaviour
         	Vector3 up = hcRigidbody.transform.up +
         		Vector3.Reflect(hcRigidbody.transform.up, Vector3.right);
         	up = up / 2f;
+
+
+        	/*--- Fire Projectile ---*/
+
+            // Account for Fire Delay
+            float fireInput = Input.GetAxis("Fire1");
+            bool fire = fireInput == 1f && lastFireTime + FIRE_DELAY < Time.fixedTime;
+            
+            if (fire) {
+
+            	// Update Last Fire Time
+            	lastFireTime = Time.fixedTime;
+
+            	// Create Pojectile
+            	Transform projectile = Instantiate(projectilePrefab, projectileEmitter.transform.position, transform.rotation);
+
+            	// Apply Forward Force
+            	Rigidbody projectileRigidbody = projectile.GetComponent<Rigidbody>();
+            	projectileRigidbody.AddForce((forward + (up * .06f)) * 7000f);
+            }
 
 
             /*--- Update Ship Translation ---*/
