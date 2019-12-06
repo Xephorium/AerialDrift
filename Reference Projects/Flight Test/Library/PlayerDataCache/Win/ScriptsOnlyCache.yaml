@@ -68,37 +68,37 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9878}
     - Class: 114
-      Script: {instanceID: 9920}
+      Script: {instanceID: 9880}
     - Class: 114
-      Script: {instanceID: 10170}
+      Script: {instanceID: 9922}
     - Class: 114
-      Script: {instanceID: 10232}
+      Script: {instanceID: 10172}
     - Class: 114
-      Script: {instanceID: 10316}
+      Script: {instanceID: 10234}
     - Class: 114
-      Script: {instanceID: 10340}
+      Script: {instanceID: 10318}
     - Class: 114
-      Script: {instanceID: 10414}
+      Script: {instanceID: 10342}
     - Class: 114
-      Script: {instanceID: 10592}
+      Script: {instanceID: 10416}
     - Class: 114
-      Script: {instanceID: 10652}
+      Script: {instanceID: 10594}
     - Class: 114
-      Script: {instanceID: 10846}
+      Script: {instanceID: 10654}
     - Class: 114
-      Script: {instanceID: 10914}
+      Script: {instanceID: 10848}
     - Class: 114
-      Script: {instanceID: 11018}
+      Script: {instanceID: 10916}
     - Class: 114
-      Script: {instanceID: 11306}
+      Script: {instanceID: 11020}
     - Class: 114
-      Script: {instanceID: 11358}
+      Script: {instanceID: 11308}
     - Class: 114
-      Script: {instanceID: 11364}
+      Script: {instanceID: 11360}
     - Class: 114
-      Script: {instanceID: 11404}
+      Script: {instanceID: 11366}
     - Class: 114
-      Script: {instanceID: 77492}
+      Script: {instanceID: 11406}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -212,6 +212,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CameraController
+  - hash:
+      serializedVersion: 2
+      Hash: 033d6e3053993352328fc9f0c99e916b
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SelectController
   - hash:
       serializedVersion: 2
       Hash: 234235b9fb07320d11497e08a726cc56
@@ -602,12 +608,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 033d6e3053993352328fc9f0c99e916b
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: SelectController
   platform: 5
   scenePathNames:
   - Assets/Scenes/SampleScene.unity

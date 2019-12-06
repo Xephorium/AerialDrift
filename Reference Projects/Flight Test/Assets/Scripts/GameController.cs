@@ -129,9 +129,30 @@ public class GameController : MonoBehaviour {
     		// Handle Back Click
             if (!animatingTransition) {
         		if (Input.GetKeyDown("escape")) {
+                    BiplaneController.instance.hideHighlight();
+                    HelicopterController.instance.hideHighlight();
+                    ViperController.instance.hideHighlight();
         			updateGameState(GameState.menu);
                     beginTransition();
         		}
+            }
+
+            // Handle Aircraft Hover
+            if (!animatingTransition) {
+                int mousePosition = (int) (Input.mousePosition[0] / (Screen.width / 3));
+                if (mousePosition == 0) {
+                    BiplaneController.instance.showHighlight();
+                    HelicopterController.instance.hideHighlight();
+                    ViperController.instance.hideHighlight();
+                } else if (mousePosition == 1) {
+                    BiplaneController.instance.hideHighlight();
+                    HelicopterController.instance.showHighlight();
+                    ViperController.instance.hideHighlight();
+                } else {
+                    BiplaneController.instance.hideHighlight();
+                    HelicopterController.instance.hideHighlight();
+                    ViperController.instance.showHighlight();
+                }
             }
 
     		// Handle Aircraft Click

@@ -304,9 +304,35 @@ public class HelicopterController : MonoBehaviour
 
     /*--- Public Methods ---*/
 
+    public void showHighlight() {
+
+        // Get Renderers
+        var renderer = gameObject.GetComponent<Renderer>();
+        var propellerBigRenderer = propellerBig.GetComponent<Renderer>();
+        var propellerSmallRenderer = propellerSmall.GetComponent<Renderer>();
+
+        // Set Emission
+        renderer.material.EnableKeyword("_EMISSION");
+        propellerBigRenderer.material.EnableKeyword("_EMISSION");
+        propellerSmallRenderer.material.EnableKeyword("_EMISSION");
+    }
+
+    public void hideHighlight() {
+
+        // Get Renderers
+        var renderer = gameObject.GetComponent<Renderer>();
+        var propellerBigRenderer = propellerBig.GetComponent<Renderer>();
+        var propellerSmallRenderer = propellerSmall.GetComponent<Renderer>();
+
+        // Set Emission
+        renderer.material.DisableKeyword("_EMISSION");
+        propellerBigRenderer.material.DisableKeyword("_EMISSION");
+        propellerSmallRenderer.material.DisableKeyword("_EMISSION");
+    }
+
     public void reset() {
 
-        // Reset Position, Rotation, Velocity, Throttle
+        // Reset Position, Rotation, Velocity, Throttle, Highlight
         transform.position = initialPosition;
         transform.rotation = initialRotation;
         craftRotationX = initialRotation.eulerAngles.x;
@@ -314,6 +340,7 @@ public class HelicopterController : MonoBehaviour
         craftRotationZ = initialRotation.eulerAngles.z;
         hcRigidbody.velocity = new Vector3(0, 0, 0);
         currentThrottle = 0f;
+        hideHighlight();
 
         // Reset Propellers
         var spinnerRenderer = propellerBig.GetComponent<Renderer>();

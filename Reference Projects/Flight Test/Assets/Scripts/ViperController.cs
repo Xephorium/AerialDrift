@@ -326,6 +326,24 @@ public class ViperController : MonoBehaviour
 
     /*--- Public Methods ---*/
 
+    public void showHighlight() {
+
+        // Get Renderer
+        var renderer = gameObject.GetComponent<Renderer>();
+
+        // Set Color
+        renderer.material.EnableKeyword("_EMISSION");
+    }
+
+    public void hideHighlight() {
+
+        // Get Renderer
+        var renderer = gameObject.GetComponent<Renderer>();
+
+        // Set Color
+        renderer.material.DisableKeyword("_EMISSION");
+    }
+
     public void reset() {
 
         // Reset Boost Effects
@@ -335,9 +353,10 @@ public class ViperController : MonoBehaviour
         trailLeft.emitting = false;
         trailRight.emitting = false;
 
-        // Reset Position, Rotation, Velocity
+        // Reset Position, Rotation, Velocity, Highlight
         transform.position = initialPosition;
         transform.rotation = initialRotation;
         vpRigidbody.velocity = new Vector3(0, 0, 0);
+        hideHighlight();
     }
 }

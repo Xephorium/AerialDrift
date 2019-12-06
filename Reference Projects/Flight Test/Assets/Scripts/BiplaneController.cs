@@ -266,6 +266,44 @@ public class BiplaneController : MonoBehaviour {
 
     /*--- Public Methods ---*/
 
+    public void showHighlight() {
+
+        // Get Renderers
+        var renderer = gameObject.GetComponent<Renderer>();
+        var propellerRenderer = propeller.GetComponent<Renderer>();
+        var propellerFinBigTop = finBigTop.GetComponent<Renderer>();
+        var propellerFinBigBottom = finBigBottom.GetComponent<Renderer>();
+        var propellerFinSmallTop = finSmallTop.GetComponent<Renderer>();
+        var propellerFinSmallBottom = finSmallBottom.GetComponent<Renderer>();
+
+        // Set Emission
+        renderer.material.EnableKeyword("_EMISSION");
+        propellerRenderer.material.EnableKeyword("_EMISSION");
+        propellerFinBigTop.material.EnableKeyword("_EMISSION");
+        propellerFinBigBottom.material.EnableKeyword("_EMISSION");
+        propellerFinSmallTop.material.EnableKeyword("_EMISSION");
+        propellerFinSmallBottom.material.EnableKeyword("_EMISSION");
+    }
+
+    public void hideHighlight() {
+
+        // Get Renderers
+        var renderer = gameObject.GetComponent<Renderer>();
+        var propellerRenderer = propeller.GetComponent<Renderer>();
+        var propellerFinBigTop = finBigTop.GetComponent<Renderer>();
+        var propellerFinBigBottom = finBigBottom.GetComponent<Renderer>();
+        var propellerFinSmallTop = finSmallTop.GetComponent<Renderer>();
+        var propellerFinSmallBottom = finSmallBottom.GetComponent<Renderer>();
+
+        // Set Emission
+        renderer.material.DisableKeyword("_EMISSION");
+        propellerRenderer.material.DisableKeyword("_EMISSION");
+        propellerFinBigTop.material.DisableKeyword("_EMISSION");
+        propellerFinBigBottom.material.DisableKeyword("_EMISSION");
+        propellerFinSmallTop.material.DisableKeyword("_EMISSION");
+        propellerFinSmallBottom.material.DisableKeyword("_EMISSION");
+    }
+
     public void reset() {
 
         // Reset State Variables
@@ -275,6 +313,7 @@ public class BiplaneController : MonoBehaviour {
         transform.position = initialPosition;
         transform.rotation = initialRotation;
         bpRigidbody.velocity = new Vector3(0, 0, 0);
+        hideHighlight();
 
         // Reset Propellers
         var spinnerRenderer = propeller.GetComponent<Renderer>();
