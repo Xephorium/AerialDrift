@@ -63,6 +63,7 @@
      <Compile Include="Assets\Scripts\MenuPositioner.cs" />
      <Compile Include="Assets\Scripts\MenuRotator.cs" />
      <Compile Include="Assets\Scripts\ProjectileController.cs" />
+     <Compile Include="Assets\Scripts\SelectController.cs" />
      <Compile Include="Assets\Scripts\UIController.cs" />
      <Compile Include="Assets\Scripts\ViperController.cs" />
      <None Include="Assets\Shaders\ToonShader.shader" />

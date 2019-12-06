@@ -9,6 +9,7 @@ ScriptsOnlyBuild:
     - MenuPositioner
     - MenuRotator
     - ProjectileController
+    - SelectController
     - UIController
     - ViperController
     UnityEditor.TestRunner.dll:
@@ -96,6 +97,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 11364}
     - Class: 114
       Script: {instanceID: 11404}
+    - Class: 114
+      Script: {instanceID: 77492}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -599,6 +602,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 033d6e3053993352328fc9f0c99e916b
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SelectController
   platform: 5
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
