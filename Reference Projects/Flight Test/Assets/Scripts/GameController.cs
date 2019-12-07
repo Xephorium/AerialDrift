@@ -23,6 +23,9 @@ public class GameController : MonoBehaviour {
 	// Public Variables
 	public GameState gameState = GameState.menu;
 
+    // Public Game Variables
+    public float destroyedSeashells = 0f;
+
 	// Private Variables
 	private bool gameStateChanged;
     private bool initialTransitionInitiated = false;

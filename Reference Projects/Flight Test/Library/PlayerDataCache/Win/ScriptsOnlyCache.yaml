@@ -4,11 +4,13 @@ ScriptsOnlyBuild:
     - BalloonController
     - BiplaneController
     - CameraController
+    - CollectableController
     - GameController
     - HelicopterController
     - MenuPositioner
     - MenuRotator
     - ProjectileController
+    - SeashellController
     - SelectController
     - UIController
     - ViperController
@@ -99,6 +101,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 11366}
     - Class: 114
       Script: {instanceID: 11406}
+    - Class: 114
+      Script: {instanceID: 50504}
+    - Class: 114
+      Script: {instanceID: 144200}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -334,7 +340,7 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
-      Hash: f66244b7545c3911b5a9e0680bf7d018
+      Hash: 564731ab9772f02a6c686d20d5f866ba
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameController
@@ -608,6 +614,18 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 940085eab491ec297282f9af36ab53c5
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SeashellController
+  - hash:
+      serializedVersion: 2
+      Hash: e4582c19034cd7bcec30279a41b0e889
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CollectableController
   platform: 5
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
