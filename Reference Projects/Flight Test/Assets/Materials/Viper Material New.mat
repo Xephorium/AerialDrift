@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Viper Material New
   m_Shader: {fileID: 45, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _EMISSION _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A _SPECGLOSSMAP
+  m_ShaderKeywords: _EMISSION _NORMALMAP _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A _SPECGLOSSMAP
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 00a375d579f822e4c9cc5c237f594ab1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -80,8 +80,8 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _AmbientColor: {r: 0.4, g: 0.4, b: 0.4, a: 1}
-    - _Color: {r: 0.78800005, g: 0.17493597, b: 0.17493597, a: 1}
-    - _EmissionColor: {r: 0.5754717, g: 0.17101282, b: 0.17101282, a: 1}
+    - _Color: {r: 0.9056604, g: 0.20932718, b: 0.20932718, a: 1}
+    - _EmissionColor: {r: 0.5377358, g: 0.09385012, b: 0.09385012, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _SpecularColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
