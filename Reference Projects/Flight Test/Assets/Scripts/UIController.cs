@@ -26,6 +26,9 @@ public class UIController : MonoBehaviour {
 	public CanvasGroup selectCanvasGroup;
 	public CanvasGroup flightCanvasGroup;
 	public CanvasGroup pauseCanvasGroup;
+    public CanvasGroup biplaneControlCanvasGroup;
+    public CanvasGroup helicopterControlCanvasGroup;
+    public CanvasGroup viperControlCanvasGroup;
 
     // Private Variables
     private Texture2D fadeTexture;
@@ -118,6 +121,33 @@ public class UIController : MonoBehaviour {
     	hideMenuUI();
     	hideSelectUI();
     	hideFlightUI();
+    }
+
+    public void showBiplaneControlUI() {
+        biplaneControlCanvasGroup.alpha = 1f;
+        biplaneControlCanvasGroup.blocksRaycasts = true;
+        helicopterControlCanvasGroup.alpha = 0f;
+        helicopterControlCanvasGroup.blocksRaycasts = false;
+        viperControlCanvasGroup.alpha = 0f;
+        viperControlCanvasGroup.blocksRaycasts = false;
+    }
+
+    public void showHelicopterControlUI() {
+        biplaneControlCanvasGroup.alpha = 0f;
+        biplaneControlCanvasGroup.blocksRaycasts = false;
+        helicopterControlCanvasGroup.alpha = 1f;
+        helicopterControlCanvasGroup.blocksRaycasts = true;
+        viperControlCanvasGroup.alpha = 0f;
+        viperControlCanvasGroup.blocksRaycasts = false;
+    }
+
+    public void showViperControlUI() {
+        biplaneControlCanvasGroup.alpha = 0f;
+        biplaneControlCanvasGroup.blocksRaycasts = false;
+        helicopterControlCanvasGroup.alpha = 0f;
+        helicopterControlCanvasGroup.blocksRaycasts = false;
+        viperControlCanvasGroup.alpha = 1f;
+        viperControlCanvasGroup.blocksRaycasts = true;
     }
 
     public void fadeToWhite() {

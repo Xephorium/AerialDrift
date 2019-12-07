@@ -186,6 +186,17 @@ public class GameController : MonoBehaviour {
                 handleQueuedTransition();
             }
 
+            // Display Appropriate Control Diagram
+            if (gameState == GameState.pauseBiplane) {
+                UIController.instance.showBiplaneControlUI();
+            }
+            if (gameState == GameState.pauseHelicopter) {
+                UIController.instance.showHelicopterControlUI();
+            }
+            if (gameState == GameState.pauseViper) {
+                UIController.instance.showViperControlUI();
+            }
+
             // Handle Back Click
             if (!animatingTransition) {
                 if (Input.GetKeyDown("escape")) {
