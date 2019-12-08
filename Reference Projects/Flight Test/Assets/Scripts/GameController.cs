@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,9 +23,6 @@ public class GameController : MonoBehaviour {
 	// Public Variables
 	public GameState gameState = GameState.menu;
 
-    // Public Game Variables
-    public float destroyedSeashells = 0f;
-
 	// Private Variables
 	private bool gameStateChanged;
     private bool initialTransitionInitiated = false;
@@ -41,6 +38,8 @@ public class GameController : MonoBehaviour {
     void Start() {
         gameState = GameState.menu;
         gameStateChanged = true;
+
+        BalloonMinigameController.instance.reset();
     }
 
     void Update() {
@@ -203,6 +202,7 @@ public class GameController : MonoBehaviour {
             // Handle Back Click
             if (!animatingTransition) {
                 if (Input.GetKeyDown("escape")) {
+                    BalloonMinigameController.instance.reset();
                     resumeSumulation();
                     updateGameState(GameState.select);
                     beginTransition();

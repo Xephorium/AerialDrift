@@ -2,16 +2,19 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - BalloonController
+    - BalloonMinigameController
     - BiplaneController
     - CameraController
     - CollectableController
     - GameController
     - HelicopterController
+    - InitialBalloonController
     - MenuPositioner
     - MenuRotator
     - ProjectileController
     - SeashellController
     - SelectController
+    - SmallBalloonController
     - UIController
     - ViperController
     UnityEditor.TestRunner.dll:
@@ -82,29 +85,35 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10342}
     - Class: 114
-      Script: {instanceID: 10416}
+      Script: {instanceID: 10374}
     - Class: 114
-      Script: {instanceID: 10594}
+      Script: {instanceID: 10418}
     - Class: 114
-      Script: {instanceID: 10654}
+      Script: {instanceID: 10484}
     - Class: 114
-      Script: {instanceID: 10848}
+      Script: {instanceID: 10598}
     - Class: 114
-      Script: {instanceID: 10916}
+      Script: {instanceID: 10658}
     - Class: 114
-      Script: {instanceID: 11020}
+      Script: {instanceID: 10852}
     - Class: 114
-      Script: {instanceID: 11308}
+      Script: {instanceID: 10886}
     - Class: 114
-      Script: {instanceID: 11360}
+      Script: {instanceID: 10922}
     - Class: 114
-      Script: {instanceID: 11366}
+      Script: {instanceID: 11026}
     - Class: 114
-      Script: {instanceID: 11406}
+      Script: {instanceID: 11028}
     - Class: 114
-      Script: {instanceID: 50504}
+      Script: {instanceID: 11316}
     - Class: 114
-      Script: {instanceID: 144200}
+      Script: {instanceID: 11368}
+    - Class: 114
+      Script: {instanceID: 11374}
+    - Class: 114
+      Script: {instanceID: 11384}
+    - Class: 114
+      Script: {instanceID: 11416}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -340,7 +349,7 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
-      Hash: 564731ab9772f02a6c686d20d5f866ba
+      Hash: f66244b7545c3911b5a9e0680bf7d018
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameController
@@ -350,6 +359,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ProjectileController
+  - hash:
+      serializedVersion: 2
+      Hash: 52e77de11ac477b96ee39f65629006d2
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BalloonMinigameController
   - hash:
       serializedVersion: 2
       Hash: b3ab2106268377ffe25dd18ac23dca28
@@ -380,6 +395,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_SpriteAnimator
+  - hash:
+      serializedVersion: 2
+      Hash: f41df7b52911221828e205309d65a83d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SmallBalloonController
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -472,6 +493,12 @@ ScriptsOnlyBuild:
     className: TimelineAsset
   - hash:
       serializedVersion: 2
+      Hash: 555d6ab1995c9d47c192b5fa3d4d38e9
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: InitialBalloonController
+  - hash:
+      serializedVersion: 2
       Hash: 21ce99959aa7ecb7e8f269f408affb71
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -494,6 +521,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: GraphicRaycaster
+  - hash:
+      serializedVersion: 2
+      Hash: e4582c19034cd7bcec30279a41b0e889
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CollectableController
   - hash:
       serializedVersion: 2
       Hash: 88cc9df3c6fc697bfbeacd24c0d6f2d7
@@ -580,6 +613,12 @@ ScriptsOnlyBuild:
     className: HelicopterController
   - hash:
       serializedVersion: 2
+      Hash: 940085eab491ec297282f9af36ab53c5
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SeashellController
+  - hash:
+      serializedVersion: 2
       Hash: aa88ae22474df55295327e4ee99e5a24
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -614,18 +653,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 940085eab491ec297282f9af36ab53c5
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: SeashellController
-  - hash:
-      serializedVersion: 2
-      Hash: e4582c19034cd7bcec30279a41b0e889
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: CollectableController
   platform: 5
   scenePathNames:
   - Assets/Scenes/SampleScene.unity

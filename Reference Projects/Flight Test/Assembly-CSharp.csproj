@@ -56,16 +56,19 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\BalloonController.cs" />
+     <Compile Include="Assets\Scripts\BalloonMinigameController.cs" />
      <Compile Include="Assets\Scripts\BiplaneController.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\CollectableController.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
      <Compile Include="Assets\Scripts\HelicopterController.cs" />
+     <Compile Include="Assets\Scripts\InitialBalloonController.cs" />
      <Compile Include="Assets\Scripts\MenuPositioner.cs" />
      <Compile Include="Assets\Scripts\MenuRotator.cs" />
      <Compile Include="Assets\Scripts\ProjectileController.cs" />
      <Compile Include="Assets\Scripts\SeashellController.cs" />
      <Compile Include="Assets\Scripts\SelectController.cs" />
+     <Compile Include="Assets\Scripts\SmallBalloonController.cs" />
      <Compile Include="Assets\Scripts\UIController.cs" />
      <Compile Include="Assets\Scripts\ViperController.cs" />
      <None Include="Assets\Shaders\ToonShader.shader" />
