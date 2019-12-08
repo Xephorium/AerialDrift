@@ -32,7 +32,7 @@ public class ViperController : MonoBehaviour
     private static float MAX_SPEED = 20f;
     private static float MAX_CAMERA_CHANGE_POS = .01f;
     private static float MAX_CAMERA_CHANGE_ROT = .01f;
-    private static float FIRE_DELAY = .35f;
+    private static float FIRE_DELAY = .25f;
 
     // Private Variables
     private Rigidbody vpRigidbody;
@@ -138,11 +138,15 @@ public class ViperController : MonoBehaviour
             	lastFireTime = Time.fixedTime;
 
             	// Create Pojectile
-            	Transform projectile = Instantiate(projectilePrefab, projectileEmitter.transform.position, transform.rotation);
+            	Transform projectile = Instantiate(
+            		projectilePrefab, 
+            		projectileEmitter.transform.position + new Vector3(0f, .25f, 0f), 
+            		transform.rotation
+            		);
 
             	// Apply Forward Force
             	Rigidbody projectileRigidbody = projectile.GetComponent<Rigidbody>();
-            	projectileRigidbody.AddForce((transform.forward + (transform.up * .05f)) * 7000f);
+            	projectileRigidbody.AddForce((transform.forward + (transform.up * .035f)) * 8000f);
             }
       
 
