@@ -46,7 +46,7 @@ public class SeashellController : MonoBehaviour {
     	CollectableController.instance.destroyedSeashells += 1f;
 
     	// Self-Destruct on Collision
-    	Destroy(gameObject, .1f);
+    	Destroy(gameObject, 0f);
 
     	// Create Large Explosion Effect
     	ParticleSystem explosion = Instantiate(explosionLarge, transform.position, transform.rotation);
