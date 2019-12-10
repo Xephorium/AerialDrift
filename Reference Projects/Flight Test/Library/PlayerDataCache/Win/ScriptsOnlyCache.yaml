@@ -260,7 +260,7 @@ ScriptsOnlyBuild:
     className: BiplaneController
   - hash:
       serializedVersion: 2
-      Hash: 53640957c736363bd6aae9b1df0ceca2
+      Hash: 33f5209a40e34dba63f6a20443e310b4
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: AudioController

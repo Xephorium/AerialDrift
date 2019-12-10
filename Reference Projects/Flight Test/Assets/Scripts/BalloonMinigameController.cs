@@ -87,6 +87,10 @@ public class BalloonMinigameController : MonoBehaviour {
     	balloonTitle.enabled = true;
     	balloonTimer.enabled = true;
 
+        // Update Audio
+        AudioController.instance.setBattleVolumeNormal();
+        AudioController.instance.playGameWhistle();
+
     	// Spawn Balloon
         spawnBalloons();
 
@@ -97,6 +101,12 @@ public class BalloonMinigameController : MonoBehaviour {
     	// Update State
     	playingGame = false;
     	destroyedBalloons = 0f;
+
+        // Update Audio
+        if (AudioController.instance != null) {
+            AudioController.instance.playGameWhistle();
+            AudioController.instance.setBattleVolumeSilent();
+        }
 
     	// Update UI
     	balloonCount.color = new Color(1f, 1f, 1f);
@@ -130,7 +140,10 @@ public class BalloonMinigameController : MonoBehaviour {
 
     public void reset() {
     	endGame();
-    	InitialBalloonController.instance.reset();
+
+        if (InitialBalloonController.instance != null) {
+    	   InitialBalloonController.instance.reset();
+        }
     }
 
 
@@ -148,14 +161,6 @@ public class BalloonMinigameController : MonoBehaviour {
     			balloonEmitter.transform.position.y + BALLOON_VERTICAL_DISTANCE);
     		float posZ = Random.Range(balloonEmitter.transform.position.z - BALLOON_HORIZONTAL_DISTANCE,
     			balloonEmitter.transform.position.z + BALLOON_HORIZONTAL_DISTANCE);
-    		// while (posZ < BALLOON_MIN_ALTITUDE) {
-    		// 	posX = Random.Range(balloonEmitter.transform.position.x - BALLOON_HORIZONTAL_DISTANCE,
-    		// 		balloonEmitter.transform.position.x + BALLOON_HORIZONTAL_DISTANCE);
-    		// 	posY = Random.Range(balloonEmitter.transform.position.y - BALLOON_HORIZONTAL_DISTANCE,
-    		// 		balloonEmitter.transform.position.y + BALLOON_HORIZONTAL_DISTANCE);
-    		// 	posZ = Random.Range(balloonEmitter.transform.position.z - BALLOON_VERTICAL_DISTANCE,
-    		// 		balloonEmitter.transform.position.z + BALLOON_VERTICAL_DISTANCE);
-    		// }
 
 	    	// Create New Balloon
 	    	Transform newBalloon = Instantiate(

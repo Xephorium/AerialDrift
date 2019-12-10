@@ -12,15 +12,20 @@ public class AudioController : MonoBehaviour {
 
 	// Public Variables
 	public AudioSource jukeboxMusic;
+	public AudioSource jukeboxBattle;
+	public AudioSource jukeboxGameWhistle;
 
     // Private Constants
     private static float MUSIC_FADE_TIME = .25f;
     private static float MUSIC_MAX_VOLUME = .07f;
     private static float MUSIC_QUIET_VOLUME = MUSIC_MAX_VOLUME * .33f;
+    private static float BATTLE_MAX_VOLUME = .085f;
+    private static float BATTLE_QUIET_VOLUME = BATTLE_MAX_VOLUME * .33f;
 
     // Private Variables
     private float time = 0f;
     private float musicVolume = 0f;
+    private bool battleMusicPlaying = false;
 
 
 	/*--- Lifecycle Methods ---*/
@@ -30,9 +35,13 @@ public class AudioController : MonoBehaviour {
     	// Set Instance
         instance = this;
 
-        // Play Music
+        // Setup Music
         jukeboxMusic.volume = musicVolume;
         jukeboxMusic.Play();
+
+        // Setup Battle Music
+        jukeboxBattle.volume = 0f;
+        jukeboxBattle.Play();
 
     }
 
@@ -53,15 +62,37 @@ public class AudioController : MonoBehaviour {
 
     public void setMusicVolumeQuiet() {
     	jukeboxMusic.volume = MUSIC_QUIET_VOLUME;
+    	if (battleMusicPlaying) {
+    		jukeboxBattle.volume = BATTLE_QUIET_VOLUME;
+    	}
     }
 
     public void setMusicVolumeNormal() {
     	jukeboxMusic.volume = MUSIC_MAX_VOLUME;
+    	if (battleMusicPlaying) {
+    		jukeboxBattle.volume = BATTLE_MAX_VOLUME;
+    	}
+    }
+
+    public void setBattleVolumeSilent() {
+    	battleMusicPlaying = false;
+    	jukeboxBattle.volume = 0f;
+    }
+
+    public void setBattleVolumeNormal() {
+    	battleMusicPlaying = true;
+    	jukeboxBattle.volume = BATTLE_MAX_VOLUME;
+    }
+
+    public void playGameWhistle() {
+    	if (battleMusicPlaying) {
+    		jukeboxGameWhistle.Play();
+    	}
     }
 
 
     /*--- Utility Methods ---*/
 
-    
+
 
 }

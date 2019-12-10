@@ -214,6 +214,7 @@ public class GameController : MonoBehaviour {
             // Handle Back Click
             if (!animatingTransition) {
                 if (Input.GetKeyDown("escape")) {
+                    AudioController.instance.setBattleVolumeSilent();
                     BalloonMinigameController.instance.reset();
                     resumeSumulation();
                     updateGameState(GameState.select);
