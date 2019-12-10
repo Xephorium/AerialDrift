@@ -55,6 +55,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\AudioController.cs" />
      <Compile Include="Assets\Scripts\BalloonController.cs" />
      <Compile Include="Assets\Scripts\BalloonMinigameController.cs" />
      <Compile Include="Assets\Scripts\BiplaneController.cs" />

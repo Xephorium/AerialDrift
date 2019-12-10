@@ -1,6 +1,7 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - AudioController
     - BalloonController
     - BalloonMinigameController
     - BiplaneController
@@ -55,6 +56,10 @@ ScriptsOnlyBuild:
     - Class: 64
       Script: {instanceID: 0}
     - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
       Script: {instanceID: 0}
     - Class: 89
       Script: {instanceID: 0}
@@ -114,6 +119,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 11384}
     - Class: 114
       Script: {instanceID: 11416}
+    - Class: 114
+      Script: {instanceID: 38144}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -653,6 +660,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 53640957c736363bd6aae9b1df0ceca2
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: AudioController
   platform: 5
   scenePathNames:
   - Assets/Scenes/SampleScene.unity

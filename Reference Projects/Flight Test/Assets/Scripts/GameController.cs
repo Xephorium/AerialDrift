@@ -53,6 +53,9 @@ public class GameController : MonoBehaviour {
     		|| gameState == GameState.flightHelicopter
     		|| gameState == GameState.flightViper) {
 
+            // Update Music
+            AudioController.instance.setMusicVolumeNormal();
+
             // Handle Queued Transition
             if (!animatingTransition && fadeInQueued && prePauseState == GameState.none) {
                 BiplaneController.instance.reset();
@@ -90,6 +93,9 @@ public class GameController : MonoBehaviour {
     	// Menu Logic
     	} else if (gameState == GameState.menu) {
 
+            // Update Music
+            AudioController.instance.setMusicVolumeNormal();
+
             // Handle Startup Animation
             if (!initialTransitionInitiated) {
                 UIController.instance.fadeFromGrey();
@@ -114,6 +120,9 @@ public class GameController : MonoBehaviour {
 
     	// Select Logic
     	} else if (gameState == GameState.select) {
+
+            // Update Music
+            AudioController.instance.setMusicVolumeNormal();
 
             // Reset Pause Flag
             if (prePauseState != GameState.none) {
@@ -182,6 +191,9 @@ public class GameController : MonoBehaviour {
                 || gameState == GameState.pauseHelicopter
                 || gameState == GameState.pauseViper
             ) {
+
+            // Update Music
+            AudioController.instance.setMusicVolumeQuiet();
 
             // Handle Queued Transition
             if (!animatingTransition && fadeInQueued) {
