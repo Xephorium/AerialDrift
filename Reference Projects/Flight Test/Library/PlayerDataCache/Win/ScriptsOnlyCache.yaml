@@ -82,45 +82,45 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9922}
     - Class: 114
-      Script: {instanceID: 10172}
+      Script: {instanceID: 9964}
     - Class: 114
-      Script: {instanceID: 10234}
+      Script: {instanceID: 10174}
     - Class: 114
-      Script: {instanceID: 10318}
+      Script: {instanceID: 10236}
     - Class: 114
-      Script: {instanceID: 10342}
+      Script: {instanceID: 10320}
     - Class: 114
-      Script: {instanceID: 10374}
+      Script: {instanceID: 10344}
     - Class: 114
-      Script: {instanceID: 10418}
+      Script: {instanceID: 10376}
     - Class: 114
-      Script: {instanceID: 10484}
+      Script: {instanceID: 10420}
     - Class: 114
-      Script: {instanceID: 10598}
+      Script: {instanceID: 10486}
     - Class: 114
-      Script: {instanceID: 10658}
+      Script: {instanceID: 10600}
     - Class: 114
-      Script: {instanceID: 10852}
+      Script: {instanceID: 10660}
     - Class: 114
-      Script: {instanceID: 10886}
+      Script: {instanceID: 10854}
     - Class: 114
-      Script: {instanceID: 10922}
+      Script: {instanceID: 10888}
     - Class: 114
-      Script: {instanceID: 11026}
+      Script: {instanceID: 10924}
     - Class: 114
       Script: {instanceID: 11028}
     - Class: 114
-      Script: {instanceID: 11316}
+      Script: {instanceID: 11030}
     - Class: 114
-      Script: {instanceID: 11368}
+      Script: {instanceID: 11318}
     - Class: 114
-      Script: {instanceID: 11374}
+      Script: {instanceID: 11370}
     - Class: 114
-      Script: {instanceID: 11384}
+      Script: {instanceID: 11376}
     - Class: 114
-      Script: {instanceID: 11416}
+      Script: {instanceID: 11386}
     - Class: 114
-      Script: {instanceID: 38144}
+      Script: {instanceID: 11418}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -258,6 +258,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BiplaneController
+  - hash:
+      serializedVersion: 2
+      Hash: 53640957c736363bd6aae9b1df0ceca2
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: AudioController
   - hash:
       serializedVersion: 2
       Hash: 8aa3d6ccbcb54ee8db6c1229854adaaa
@@ -660,12 +666,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 53640957c736363bd6aae9b1df0ceca2
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: AudioController
   platform: 5
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
