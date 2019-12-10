@@ -11,6 +11,7 @@ public class InitialBalloonController : MonoBehaviour {
     public static InitialBalloonController instance;
 	public ParticleSystem explosionLarge;
 	public ParticleSystem explosionSmall;
+    public AudioSource popEmitter;
 	public float temporalOffset = 0f;
 
 	// Private Variables
@@ -100,6 +101,11 @@ public class InitialBalloonController : MonoBehaviour {
     	// Create Small Explosion Effect
     	explosion = Instantiate(explosionSmall, transform.position, transform.rotation);
     	Destroy(explosion, 1.5f);
+
+        // Create Pop Emitter
+        AudioSource pop = Instantiate(popEmitter, transform.position, transform.rotation);
+        pop.Play();
+        Destroy(pop, 3f);
     }
 
     public void reset() {

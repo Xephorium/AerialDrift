@@ -29,41 +29,66 @@ public class CameraController : MonoBehaviour {
 
     public void showMenuCamera() {
     	menuCamera.enabled = true;
+        menuCamera.GetComponent<AudioListener>().enabled = true;
     	selectCamera.enabled = false;
+        selectCamera.GetComponent<AudioListener>().enabled = false;
         biplaneCamera.enabled = false;
+        biplaneCamera.GetComponent<AudioListener>().enabled = false;
         helicopterCamera.enabled = false;
+        helicopterCamera.GetComponent<AudioListener>().enabled = false;
     	viperCamera.enabled = false;
+        viperCamera.GetComponent<AudioListener>().enabled = false;
     }
 
     public void showSelectCamera() {
     	menuCamera.enabled = false;
-    	selectCamera.enabled = true;
+        menuCamera.GetComponent<AudioListener>().enabled = false;
+        selectCamera.enabled = true;
+        selectCamera.GetComponent<AudioListener>().enabled = true;
         biplaneCamera.enabled = false;
+        biplaneCamera.GetComponent<AudioListener>().enabled = false;
         helicopterCamera.enabled = false;
-    	viperCamera.enabled = false;
+        helicopterCamera.GetComponent<AudioListener>().enabled = false;
+        viperCamera.enabled = false;
+        viperCamera.GetComponent<AudioListener>().enabled = false;
     }
 
     public void showBiplaneCamera() {
         menuCamera.enabled = false;
+        menuCamera.GetComponent<AudioListener>().enabled = false;
         selectCamera.enabled = false;
+        selectCamera.GetComponent<AudioListener>().enabled = false;
         biplaneCamera.enabled = true;
+        biplaneCamera.GetComponent<AudioListener>().enabled = true;
         helicopterCamera.enabled = false;
+        helicopterCamera.GetComponent<AudioListener>().enabled = false;
         viperCamera.enabled = false;
+        viperCamera.GetComponent<AudioListener>().enabled = false;
     }
 
     public void showHelicopterCamera() {
         menuCamera.enabled = false;
+        menuCamera.GetComponent<AudioListener>().enabled = false;
         selectCamera.enabled = false;
+        selectCamera.GetComponent<AudioListener>().enabled = false;
         biplaneCamera.enabled = false;
+        biplaneCamera.GetComponent<AudioListener>().enabled = false;
         helicopterCamera.enabled = true;
+        helicopterCamera.GetComponent<AudioListener>().enabled = true;
         viperCamera.enabled = false;
+        viperCamera.GetComponent<AudioListener>().enabled = false;
     }
 
     public void showViperCamera() {
     	menuCamera.enabled = false;
-    	selectCamera.enabled = false;
+        menuCamera.GetComponent<AudioListener>().enabled = false;
+        selectCamera.enabled = false;
+        selectCamera.GetComponent<AudioListener>().enabled = false;
         biplaneCamera.enabled = false;
+        biplaneCamera.GetComponent<AudioListener>().enabled = false;
         helicopterCamera.enabled = false;
-    	viperCamera.enabled = true;
+        helicopterCamera.GetComponent<AudioListener>().enabled = false;
+        viperCamera.enabled = true;
+        viperCamera.GetComponent<AudioListener>().enabled = true;
     }
 }

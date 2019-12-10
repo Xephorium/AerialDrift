@@ -10,6 +10,7 @@ public class SmallBalloonController : MonoBehaviour {
 	// Public Variables
 	public ParticleSystem explosionLarge;
 	public ParticleSystem explosionSmall;
+    public AudioSource popEmitter;
     public float driftCycleLength = 10f;
 	public float temporalOffset = 0f;
 
@@ -79,6 +80,11 @@ public class SmallBalloonController : MonoBehaviour {
     	// Create Small Explosion Effect
     	explosion = Instantiate(explosionSmall, transform.position, transform.rotation);
     	Destroy(explosion, 1.5f);
+
+        // Create Pop Emitter
+        AudioSource pop = Instantiate(popEmitter, transform.position, transform.rotation);
+        pop.Play();
+        Destroy(pop, 3f);
     }
 
 }

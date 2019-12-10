@@ -9,6 +9,7 @@ public class SeashellController : MonoBehaviour {
 	// Public Variables
 	public ParticleSystem explosionLarge;
 	public ParticleSystem explosionSmall;
+    public AudioSource jingleEmitter;
 
 	// Private Variables
 	private float currentTime = 0f;
@@ -55,5 +56,10 @@ public class SeashellController : MonoBehaviour {
     	// Create Small Explosion Effect
     	explosion = Instantiate(explosionSmall, transform.position, transform.rotation);
     	Destroy(explosion, 1.5f);
+
+        // Create Jingle Emitter
+        AudioSource jingle = Instantiate(jingleEmitter, transform.position, transform.rotation);
+        jingle.Play();
+        Destroy(jingle, 3f);
     }
 }
