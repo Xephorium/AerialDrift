@@ -67,6 +67,7 @@
      <Compile Include="Assets\Scripts\MenuPositioner.cs" />
      <Compile Include="Assets\Scripts\MenuRotator.cs" />
      <Compile Include="Assets\Scripts\ProjectileController.cs" />
+     <Compile Include="Assets\Scripts\RingController.cs" />
      <Compile Include="Assets\Scripts\SeashellController.cs" />
      <Compile Include="Assets\Scripts\SelectController.cs" />
      <Compile Include="Assets\Scripts\SmallBalloonController.cs" />
