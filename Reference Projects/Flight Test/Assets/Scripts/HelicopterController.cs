@@ -24,7 +24,7 @@ public class HelicopterController : MonoBehaviour
     // Private Constants
     private static float CAMERA_MOVEMENT_FACTOR = .8f;
     private static float CAMERA_DEPTH_FACTOR = 1f;
-    private static float MAX_SPEED = 20f;
+    private static float MAX_SPEED = 25f;
     private static float MAX_CAMERA_CHANGE_POS = .01f;
     private static float MAX_CAMERA_CHANGE_ROT = .01f;
     private static float MAX_BANK_ANGLE = 7f;
@@ -32,7 +32,7 @@ public class HelicopterController : MonoBehaviour
     private static float BANK_TRANSITION_TAPERING = .2f;
     private static float THROTTLE_CHANGE_RATE = 0.3f;
     private static float THROTTLE_DEAD_ZONE = 0.7f;
-    private static float FIRE_DELAY = .35f;
+    private static float FIRE_DELAY = .25f;
 
     // Private Variables
     private Rigidbody hcRigidbody;
@@ -121,9 +121,9 @@ public class HelicopterController : MonoBehaviour
             if (currentThrottle < THROTTLE_DEAD_ZONE) {
             	throttleFactor = 0f;
             }
-            Vector3 forceForwardBack = forward * 10 * moveForwardBack * throttleFactor;
-            Vector3 forceUpDown = up * 5 * moveUpDown * throttleFactor;
-            Vector3 forceRightLeft = right * 10 * moveRightLeft * throttleFactor;
+            Vector3 forceForwardBack = forward * 14 * moveForwardBack * throttleFactor;
+            Vector3 forceUpDown = up * 8 * moveUpDown * throttleFactor;
+            Vector3 forceRightLeft = right * 14 * moveRightLeft * throttleFactor;
 
             // Combine Force Vectors
             Vector3 combinedForce = forceForwardBack + forceUpDown + forceRightLeft;
