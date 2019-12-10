@@ -17,7 +17,7 @@ public class CollectableController: MonoBehaviour {
     public float destroyedSeashells = 0f;
 
     // Private Constants
-    private float TOTAL_SEASHELLS = 10f;
+    private float TOTAL_SEASHELLS = 4f;
 
 
     /*--- Lifecycle Methods ---*/
@@ -33,7 +33,7 @@ public class CollectableController: MonoBehaviour {
     	// Update UI
     	seashellCount.text = destroyedSeashells.ToString() + "/" + TOTAL_SEASHELLS.ToString();
 
-    	if (destroyedSeashells == TOTAL_SEASHELLS) {
+    	if (destroyedSeashells >= TOTAL_SEASHELLS) {
     		seashellCount.color = new Color(.95f, .95f, 0.4f);
     		seashellImage.color = new Color(.95f, .95f, 0.4f);
     	}
