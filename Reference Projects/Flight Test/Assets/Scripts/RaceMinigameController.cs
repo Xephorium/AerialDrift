@@ -19,7 +19,11 @@ public class RaceMinigameController : MonoBehaviour {
     public Text raceTimer;
     public GameObject ringContainer;
     public GameObject finalRing;
-    public GameObject victoryFireworkContainer;
+    public GameObject victoryFireworkContainer1;
+    public GameObject victoryFireworkContainer2;
+    public GameObject victoryFireworkContainer3;
+    public GameObject victoryFireworkContainer4;
+    public GameObject victoryFireworkContainer5;
     public AudioSource jukeboxVictoryFirework;
     public bool playingGame = false;
 
@@ -176,7 +180,27 @@ public class RaceMinigameController : MonoBehaviour {
 
         // Play All Particle Systems
         for(int x = 0; x < 5; x++) {
-            var particleSystem = victoryFireworkContainer.transform.GetChild(x).GetComponent<ParticleSystem>();
+            var particleSystem = victoryFireworkContainer1.transform.GetChild(x).GetComponent<ParticleSystem>();
+            particleSystem.Play();
+        }
+
+        for(int x = 0; x < 5; x++) {
+            var particleSystem = victoryFireworkContainer2.transform.GetChild(x).GetComponent<ParticleSystem>();
+            particleSystem.Play();
+        }
+
+        for(int x = 0; x < 5; x++) {
+            var particleSystem = victoryFireworkContainer3.transform.GetChild(x).GetComponent<ParticleSystem>();
+            particleSystem.Play();
+        }
+
+        for(int x = 0; x < 5; x++) {
+            var particleSystem = victoryFireworkContainer4.transform.GetChild(x).GetComponent<ParticleSystem>();
+            particleSystem.Play();
+        }
+
+        for(int x = 0; x < 5; x++) {
+            var particleSystem = victoryFireworkContainer5.transform.GetChild(x).GetComponent<ParticleSystem>();
             particleSystem.Play();
         }
 

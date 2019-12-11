@@ -269,7 +269,7 @@ ScriptsOnlyBuild:
     className: BiplaneController
   - hash:
       serializedVersion: 2
-      Hash: 7c0285d3dc56aff7d14da2bb0fb933db
+      Hash: e98fc606325026cea28d43930074bee9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RaceMinigameController
