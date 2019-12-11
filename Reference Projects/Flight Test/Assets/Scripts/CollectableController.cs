@@ -17,7 +17,7 @@ public class CollectableController: MonoBehaviour {
     public float destroyedSeashells = 0f;
 
     // Private Constants
-    private float TOTAL_SEASHELLS = 4f;
+    private float TOTAL_SEASHELLS = 10f;
 
 
     /*--- Lifecycle Methods ---*/

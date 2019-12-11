@@ -135,7 +135,7 @@ public class RaceMinigameController : MonoBehaviour {
     		}
 
             // Handle Final Ring
-            if (maxCheckpointsPassed >= RING_COUNT) {
+            if (checkpointsPassed >= RING_COUNT) {
                 celebrate();
                 reset();
             }

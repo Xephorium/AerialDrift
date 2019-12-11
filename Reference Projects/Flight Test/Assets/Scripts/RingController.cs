@@ -74,7 +74,7 @@ public class RingController : MonoBehaviour {
 	    	RaceMinigameController.instance.recordCheckpointPassed();
 
 	    	playChime();
-	    	//hideRing();
+	    	hideRing();
     	}
     }
 
