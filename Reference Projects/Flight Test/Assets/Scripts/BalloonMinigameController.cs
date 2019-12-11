@@ -19,6 +19,7 @@ public class BalloonMinigameController : MonoBehaviour {
     public Text balloonTimer;
     public GameObject balloonEmitter;
     public Transform balloonTemplate;
+    public bool playingGame = false;
 
     // Private Constants
     private float BALLOON_COUNT = 40f;
@@ -27,7 +28,6 @@ public class BalloonMinigameController : MonoBehaviour {
     private List<Color> COLORS = new List<Color>();
 
     // Private Variables
-    private bool playingGame = false;
     private float currentTime = 0f;
     private float gameStartTime = 0f;
     private float destroyedBalloons = 0f;

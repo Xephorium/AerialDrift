@@ -40,6 +40,7 @@ public class GameController : MonoBehaviour {
         gameStateChanged = true;
 
         BalloonMinigameController.instance.reset();
+        RaceMinigameController.instance.reset();
     }
 
     void Update() {
@@ -216,6 +217,7 @@ public class GameController : MonoBehaviour {
                 if (Input.GetKeyDown("escape")) {
                     AudioController.instance.setBattleVolumeSilent();
                     BalloonMinigameController.instance.reset();
+                    RaceMinigameController.instance.reset();
                     resumeSumulation();
                     updateGameState(GameState.select);
                     beginTransition();

@@ -71,7 +71,7 @@ public class RingController : MonoBehaviour {
     		|| other.name == "Helicopter") {
 
 	    	// Record Checkpoint
-	    	// RaceMinigameController.instance.recordCheckpoint();
+	    	RaceMinigameController.instance.recordCheckpointPassed();
 
 	    	playChime();
 	    	//hideRing();

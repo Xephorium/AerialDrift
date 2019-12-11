@@ -77,12 +77,14 @@ public class InitialBalloonController : MonoBehaviour {
     }
 
     void OnTriggerEnter(Collider other) {
+        if (!RaceMinigameController.instance.playingGame) {
 
-    	// Start Game
-    	BalloonMinigameController.instance.startGame();
+            // Start Game
+            BalloonMinigameController.instance.startGame();
 
-        // Hide Balloon
-    	hideBalloon();
+            // Hide Balloon
+            hideBalloon();
+        }
     }
 
 

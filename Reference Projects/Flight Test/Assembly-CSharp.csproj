@@ -64,9 +64,11 @@
      <Compile Include="Assets\Scripts\GameController.cs" />
      <Compile Include="Assets\Scripts\HelicopterController.cs" />
      <Compile Include="Assets\Scripts\InitialBalloonController.cs" />
+     <Compile Include="Assets\Scripts\InitialRingController.cs" />
      <Compile Include="Assets\Scripts\MenuPositioner.cs" />
      <Compile Include="Assets\Scripts\MenuRotator.cs" />
      <Compile Include="Assets\Scripts\ProjectileController.cs" />
+     <Compile Include="Assets\Scripts\RaceMinigameController.cs" />
      <Compile Include="Assets\Scripts\RingController.cs" />
      <Compile Include="Assets\Scripts\SeashellController.cs" />
      <Compile Include="Assets\Scripts\SelectController.cs" />

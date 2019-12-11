@@ -10,9 +10,12 @@ ScriptsOnlyBuild:
     - GameController
     - HelicopterController
     - InitialBalloonController
+    - InitialRingController
     - MenuPositioner
     - MenuRotator
     - ProjectileController
+    - RaceMinigameController
+    - RingController
     - SeashellController
     - SelectController
     - SmallBalloonController
@@ -86,41 +89,47 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10174}
     - Class: 114
-      Script: {instanceID: 10236}
+      Script: {instanceID: 10192}
     - Class: 114
-      Script: {instanceID: 10320}
+      Script: {instanceID: 10238}
     - Class: 114
-      Script: {instanceID: 10344}
+      Script: {instanceID: 10322}
     - Class: 114
-      Script: {instanceID: 10376}
+      Script: {instanceID: 10346}
     - Class: 114
-      Script: {instanceID: 10420}
+      Script: {instanceID: 10378}
     - Class: 114
-      Script: {instanceID: 10486}
+      Script: {instanceID: 10422}
     - Class: 114
-      Script: {instanceID: 10600}
+      Script: {instanceID: 10488}
     - Class: 114
-      Script: {instanceID: 10660}
+      Script: {instanceID: 10602}
     - Class: 114
-      Script: {instanceID: 10854}
+      Script: {instanceID: 10662}
     - Class: 114
-      Script: {instanceID: 10888}
+      Script: {instanceID: 10856}
     - Class: 114
-      Script: {instanceID: 10924}
+      Script: {instanceID: 10890}
     - Class: 114
-      Script: {instanceID: 11028}
+      Script: {instanceID: 10926}
     - Class: 114
       Script: {instanceID: 11030}
     - Class: 114
-      Script: {instanceID: 11318}
+      Script: {instanceID: 11032}
     - Class: 114
-      Script: {instanceID: 11370}
+      Script: {instanceID: 11320}
     - Class: 114
-      Script: {instanceID: 11376}
+      Script: {instanceID: 11372}
     - Class: 114
-      Script: {instanceID: 11386}
+      Script: {instanceID: 11378}
     - Class: 114
-      Script: {instanceID: 11418}
+      Script: {instanceID: 11388}
+    - Class: 114
+      Script: {instanceID: 11420}
+    - Class: 114
+      Script: {instanceID: 29660}
+    - Class: 114
+      Script: {instanceID: 29672}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -332,6 +341,12 @@ ScriptsOnlyBuild:
     className: Shadow
   - hash:
       serializedVersion: 2
+      Hash: c196e58b3a4d533c8e53c994b14b9c3a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: RingController
+  - hash:
+      serializedVersion: 2
       Hash: cc4274b586df3c02688bac01b88bd16c
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
@@ -374,7 +389,7 @@ ScriptsOnlyBuild:
     className: ProjectileController
   - hash:
       serializedVersion: 2
-      Hash: 52e77de11ac477b96ee39f65629006d2
+      Hash: 6052f53fac50040d13a6f486a8c0d36f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BalloonMinigameController
@@ -666,6 +681,18 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: d153d1e1d44da52562e7f09bf20085ec
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: RaceMinigameController
+  - hash:
+      serializedVersion: 2
+      Hash: 161506aa6bc4ddf5321395db14d55d49
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: InitialRingController
   platform: 5
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
