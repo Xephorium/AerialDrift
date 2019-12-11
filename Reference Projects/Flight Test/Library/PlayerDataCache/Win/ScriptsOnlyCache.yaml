@@ -85,51 +85,51 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9922}
     - Class: 114
-      Script: {instanceID: 9964}
+      Script: {instanceID: 9924}
     - Class: 114
-      Script: {instanceID: 10174}
+      Script: {instanceID: 9966}
     - Class: 114
-      Script: {instanceID: 10192}
+      Script: {instanceID: 10176}
     - Class: 114
-      Script: {instanceID: 10238}
+      Script: {instanceID: 10194}
     - Class: 114
-      Script: {instanceID: 10322}
+      Script: {instanceID: 10240}
     - Class: 114
-      Script: {instanceID: 10346}
+      Script: {instanceID: 10324}
     - Class: 114
-      Script: {instanceID: 10378}
+      Script: {instanceID: 10348}
     - Class: 114
-      Script: {instanceID: 10422}
+      Script: {instanceID: 10380}
     - Class: 114
-      Script: {instanceID: 10488}
+      Script: {instanceID: 10424}
     - Class: 114
-      Script: {instanceID: 10602}
+      Script: {instanceID: 10490}
     - Class: 114
-      Script: {instanceID: 10662}
+      Script: {instanceID: 10504}
     - Class: 114
-      Script: {instanceID: 10856}
+      Script: {instanceID: 10606}
     - Class: 114
-      Script: {instanceID: 10890}
+      Script: {instanceID: 10666}
     - Class: 114
-      Script: {instanceID: 10926}
+      Script: {instanceID: 10860}
     - Class: 114
-      Script: {instanceID: 11030}
+      Script: {instanceID: 10894}
     - Class: 114
-      Script: {instanceID: 11032}
+      Script: {instanceID: 10930}
     - Class: 114
-      Script: {instanceID: 11320}
+      Script: {instanceID: 11034}
     - Class: 114
-      Script: {instanceID: 11372}
+      Script: {instanceID: 11036}
     - Class: 114
-      Script: {instanceID: 11378}
+      Script: {instanceID: 11324}
     - Class: 114
-      Script: {instanceID: 11388}
+      Script: {instanceID: 11376}
     - Class: 114
-      Script: {instanceID: 11420}
+      Script: {instanceID: 11382}
     - Class: 114
-      Script: {instanceID: 29660}
+      Script: {instanceID: 11392}
     - Class: 114
-      Script: {instanceID: 29672}
+      Script: {instanceID: 11424}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -267,6 +267,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BiplaneController
+  - hash:
+      serializedVersion: 2
+      Hash: 7c0285d3dc56aff7d14da2bb0fb933db
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: RaceMinigameController
   - hash:
       serializedVersion: 2
       Hash: 33f5209a40e34dba63f6a20443e310b4
@@ -429,6 +435,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SmallBalloonController
+  - hash:
+      serializedVersion: 2
+      Hash: 161506aa6bc4ddf5321395db14d55d49
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: InitialRingController
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -681,18 +693,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: d153d1e1d44da52562e7f09bf20085ec
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: RaceMinigameController
-  - hash:
-      serializedVersion: 2
-      Hash: 161506aa6bc4ddf5321395db14d55d49
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: InitialRingController
   platform: 5
   scenePathNames:
   - Assets/Scenes/SampleScene.unity

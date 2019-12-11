@@ -19,6 +19,8 @@ public class RaceMinigameController : MonoBehaviour {
     public Text raceTimer;
     public GameObject ringContainer;
     public GameObject finalRing;
+    public GameObject victoryFireworkContainer;
+    public AudioSource jukeboxVictoryFirework;
     public bool playingGame = false;
 
     // Private Constants
@@ -130,6 +132,7 @@ public class RaceMinigameController : MonoBehaviour {
 
             // Handle Final Ring
             if (maxCheckpointsPassed >= RING_COUNT) {
+                celebrate();
                 reset();
             }
     	}
@@ -167,6 +170,18 @@ public class RaceMinigameController : MonoBehaviour {
         // Hide Final Ring
         var finalRingScript = finalRing.GetComponent(typeof(RingController)) as RingController;
         finalRingScript.hideRing();
+    }
+
+    private void celebrate() {
+
+        // Play All Particle Systems
+        for(int x = 0; x < 5; x++) {
+            var particleSystem = victoryFireworkContainer.transform.GetChild(x).GetComponent<ParticleSystem>();
+            particleSystem.Play();
+        }
+
+        // Play Firework Audio
+        jukeboxVictoryFirework.Play();
     }
 
 }

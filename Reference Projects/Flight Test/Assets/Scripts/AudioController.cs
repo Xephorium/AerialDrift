@@ -17,7 +17,7 @@ public class AudioController : MonoBehaviour {
 
     // Private Constants
     private static float MUSIC_FADE_TIME = .25f;
-    private static float MUSIC_MAX_VOLUME = 0f; //.07f;
+    private static float MUSIC_MAX_VOLUME = .07f;
     private static float MUSIC_QUIET_VOLUME = MUSIC_MAX_VOLUME * .42f;
     private static float BATTLE_MAX_VOLUME = .085f;
     private static float BATTLE_QUIET_VOLUME = BATTLE_MAX_VOLUME * .42f;
