@@ -15,4 +15,4 @@
 
 
 #### Download
-- Demo build folder [here](https://github.com/Xephorium/GameDevFinalProject/tree/master/Reference%20Projects/Flight%20Test/Build). Download and run `Flight Test.exe`
+&nbsp;&nbsp;&nbsp;&nbsp;![Bullet](Readme/bullet.png)&nbsp; Demo build folder [here](https://github.com/Xephorium/GameDevFinalProject/tree/master/Reference%20Projects/Flight%20Test/Build). Download and run `Flight Test.exe`
