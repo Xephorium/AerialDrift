@@ -15,4 +15,4 @@
 
 
 #### Download
-- Demo build ![here](https://github.com/Xephorium/GameDevFinalProject/tree/master/Reference%20Projects/Flight%20Test/Build/archive/master.zip)
+- Demo build folder [here](https://github.com/Xephorium/GameDevFinalProject/tree/master/Reference%20Projects/Flight%20Test/Build). Download and run `TestFlight.exe`
